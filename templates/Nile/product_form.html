@@ -1,0 +1,181 @@
+{% extends 'core/base.html' %}
+
+{% block title %} Blank Page {% endblock %}
+
+{% load static %}
+
+{% block body %} 
+
+{% include 'core/navigation.html' %}
+    
+
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Blank</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+		   <div class="row">
+
+		        <div class="col-md-2">ads
+	         	</div>
+
+				<div class="col-md-8">
+
+                {% for message in  messages %}
+	            <div class="alert alert-success text-center">
+	              {{message}}
+	            </div>
+				{% endfor %}
+
+		<div class="contact_title">
+            <h2>Product Listing</h2>
+            <p>Follow the steps below to create email account enjoy the great mail.com emailing experience. Vivamus tempus risus vel felis condimentum, non vehicula est iaculis.</p>
+          </div>
+
+  <form  method="POST" action="."  enctype="multipart/form-data" class="p-5 bg-white border">
+  {% csrf_token %}
+  {{form.media}}
+
+
+      <div class="row form-group">
+	        <div class="col-md-12 mb-3 mb-md-0">
+	         <label class="font-weight-bold" for="fullname">Enter Title <span style="color : red; font-size: 16px;" >*</span> </label>
+	        {{form.title}}
+	      </div>
+	    </div>
+
+       <div class="row form-group">
+	        <div class="col-md-12 mb-3 mb-md-0">
+	         <label class="font-weight-bold" for="fullname">Enter Actual Price <span style="color : red; font-size: 16px;" >*</span> </label>
+	         {{form.price}}
+	      </div>
+	    </div>
+
+       <div class="row form-group">
+	        <div class="col-md-12 mb-3 mb-md-0">
+	         <label class="font-weight-bold" for="fullname">Enter Discounted Price <span style="color : red; font-size: 16px;" >*</span> </label>
+	         {{form.price_cancel}}
+	      </div>
+	    </div>
+
+
+
+      <div class="row form-group">
+	      <div class="col-md-12 mb-3 mb-md-0">
+	          <label class="font-weight-bold" for="fullname">Enter Sample Description <span style="color : red; font-size: 16px;" >*</span> </label>
+	     	   <textarea name="sample"   id="id_sample" cols="30" rows="5" class="form-control" placeholder="Full Product Description" required></textarea>
+	       </div>
+	     </div>
+
+      <div class="row form-group">
+	      <div class="col-md-12 mb-3 mb-md-0">
+	          <label class="font-weight-bold" for="fullname">Enter Description <span style="color : red; font-size: 16px;" >*</span> </label>
+	           {{form.description}}
+			   
+			   
+	       </div>
+	     </div>
+
+       	<div class="row form-group">
+	       <div class="col-md-12 mb-3 mb-md-0">
+	         <label class="font-weight-bold" for="fullname">Enter Kind <span style="color : red; font-size: 16px;" >*</span> </label>
+					<select class="input-list" name="kind"   id="id_kind">
+								<option value="new">New</option>
+								<option value="used">Used</option>
+		      </select>
+	        </div>
+	      </div>
+
+        <div class="row form-group">
+	       <div class="col-md-12 mb-3 mb-md-0">
+	         <label class="font-weight-bold" for="fullname">Enter Kind <span style="color : red; font-size: 16px;" >*</span> </label>
+					<select class="input-list" name="availability"  id="id_availability">
+								<option value="instock">In stock</option>
+								<option value="autofstock">Out Of stock</option>
+								<option value="reqestorder">Request Order</option>
+		      </select>
+	        </div>
+	      </div>
+
+        
+        <div class="row form-group">
+	       <div class="col-md-12 mb-3 mb-md-0">
+	         <label class="font-weight-bold" for="fullname">Select category <span style="color : red; font-size: 16px;" >*</span> </label>
+					<select class="input-list" name="category"   id="id_category">
+								<option value="men">Men</option>
+								<option value="digtal">Digtal</option>
+								<option value="food">Food</option>
+								<option value="accesories">Accesories</option>
+		      </select>
+	        </div>
+	      </div>
+
+            
+       <div class="row form-group">
+	        <div class="col-md-12 mb-3 mb-md-0">
+	         <label class="font-weight-bold" for="fullname">Upload Product Main Image<span style="color : red; font-size: 16px;" >*</span> </label>
+	         {{form.image}}
+	      </div>
+	    </div>
+
+
+		<br>
+      <button type="submit" class="btn btn-success">Continue <i class="fa fa-arrow-circle-right"></i></button>
+    </form>
+
+
+              {% if form.errors %}
+              <div class="alert alert-danger text-center">
+                <b> Error ! Change few things. </b>
+                  {{form.errors}}
+             
+              </div>
+              {% endif %}
+
+
+				 <br>
+				</div>
+				<div class="col-md-2">ads
+	         	</div>
+
+
+		
+
+	         </div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+		<!-- /section -->
+  	<script>
+		//Query All input fields
+		var form_fields = document.getElementsByTagName('input')
+		form_fields[1].className = 'form-control';
+		form_fields[2].className = 'form-control';
+		form_fields[3].className = 'form-control';
+		form_fields[4].className = 'form-control';
+		form_fields[5].className = 'form-control';
+		form_fields[6].className = 'form-control';
+		form_fields[7].className = 'form-control';
+
+    
+    for (var field in form_fields){	
+			form_fields[field].placeholder +='These Filed requred';
+		}
+
+
+	</script>
+	
+	{% endblock %}

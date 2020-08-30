@@ -1,0 +1,238 @@
+{% extends 'core/base.html' %}
+
+{% block title %} Subscription Page {% endblock %}
+
+{% load static %}
+
+{% block body %} 
+
+{% include 'core/navigation.html' %}
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Subscription</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+
+             <div class="col-md-2">ads
+	         	</div>
+
+				<div class="col-md-8">
+
+                {% for message in  messages %}
+	            <div class="alert alert-success text-center">
+	              {{message}}
+	            </div>
+				{% endfor %}
+
+                 {% if form.errors %}
+              <div class="alert alert-danger text-center">
+                <b> Error ! Change few things. </b>
+                  {{form.errors}}
+              </div>
+              {% endif %}
+            
+
+            <form action="." method="POST" enctype="multipart/form-data" class="p-5 bg-white border">
+
+            
+
+            {% csrf_token %}
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="font-weight-bold" for="email">Name(title)</label>
+                    {{form.title}}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="font-weight-bold" for="email">Minimum Amount</label>
+                     {{form.minmun}}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="font-weight-bold" for="fullname">Maxmum Amount</label>
+                    {{form.maxmum}}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="font-weight-bold" for="fullname">Collateral</label>
+                    {{form.collateral}}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="font-weight-bold" for="fullname">Duration</label>
+                    {{form.duration}}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="font-weight-bold" for="fullname">Monthly Interest</label>
+                    {{form.monthly}}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="font-weight-bold" for="fullname">2 weeks Interest</label>
+                    {{form.weeksii}}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                    <label class="font-weight-bold" for="fullname">Weekly Return</label>
+                     {{form.weeklyr}}
+                </div>
+              </div>
+
+               {{ form.media }}
+               
+            
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="font-weight-bold" for="message">Loan Information</label>
+                  {{form.loaninfo}}
+                  <!--
+                  <textarea name="loaninfo" id="loan_info" cols="30" rows="5" class="form-control" placeholder="Explain About Loan Generally"  required></textarea>
+                  -->               
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="font-weight-bold" for="message">Explain Collateral</label>
+                  {{form.collatexpl}}
+                  <!--
+                  <textarea name="callatexpl" id="callatexpl" cols="30" rows="5" class="form-control" placeholder="Explain About Collateral" required></textarea>
+                  -->
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="font-weight-bold" for="message">Loan Repayment</label>
+                  {{form.loanrepay}}
+                  <!--
+                  <textarea name="loanrepay" id="loanrepay" cols="30" rows="5" class="form-control" placeholder="Explain About Loan Repayment"  required></textarea>
+                  -->
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="font-weight-bold" for="message">Weekly Return</label>
+                  {{form.wereap}}
+                  <!--
+                  <textarea name="wereap" id="weekly_reap" cols="30" rows="5" class="form-control" placeholder="Explain About Weekly Return" required></textarea>
+                  -->
+                </div>
+              </div>
+
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="font-weight-bold" for="image">Loan Agreement (pdf,word,excell)</label>
+                    {{form.document}}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="font-weight-bold" for="image">Main Image</label>
+                    {{form.image}}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="font-weight-bold" for="image_2">Gallery Image</label>
+                    {{form.image2}}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="font-weight-bold" for="image_3">Gallery Image</label>
+                    {{form.image3}}
+                </div>
+              </div>
+
+
+               <div class="row form-group">
+                <div class="col-md-12">
+                  <button type="submit" name="submit"  class="btn btn-success  py-2 px-4 rounded-0">Upload Service</button>
+                </div>
+              </div>
+              
+
+
+            
+        
+            </form>
+
+
+
+
+
+
+
+
+
+
+
+                
+
+                </div>
+
+                 <div class="col-md-2">ads
+	         	</div>
+
+    
+     		</div>
+       	<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+    <script>
+		//Query All input fields
+		var form_fields = document.getElementsByTagName('input')
+		form_fields[1].className = 'form-control';
+		form_fields[2].className = 'form-control';
+		form_fields[3].className = 'form-control';
+		form_fields[4].className = 'form-control';
+		form_fields[5].className = 'form-control';
+		form_fields[6].className = 'form-control';
+		form_fields[7].className = 'form-control';
+    form_fields[8].className = 'form-control';
+		form_fields[9].className = 'form-control';
+		form_fields[10].className = 'form-control';
+		form_fields[11].className = 'form-control';
+    form_fields[12].className = 'form-control';
+    form_fields[13].className = 'form-control';
+
+	</script>
+  
+	{% endblock %}

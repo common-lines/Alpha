@@ -1,0 +1,132 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} Details Page {% endblock %}
+
+{% load static %}
+
+{% block body %} 
+
+{% include 'core/navigation.html' %}
+    
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Create Account</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+
+        <div class="col-md-3">Ads</div>
+
+
+        <div class="col-md-6">
+
+          <div class="contact_title">
+            <h2>CREATE ACCOUNT</h2>
+            <p>Follow the steps below to create email account enjoy the great mail.com emailing experience. Vivamus tempus risus vel felis condimentum, non vehicula est iaculis.</p>
+          </div>
+          <form  method="POST"  class="p-5 bg-white border">
+
+           {% csrf_token %}
+
+            <div class="row form-group">
+              <div class="col-md-12 mb-3 mb-md-0">
+                <label class="font-weight-bold" for="fullname">Enter Username <span style="color : red; font-size: 16px;" >*</span> </label>
+                  {{form.username}}
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <div class="col-md-12 mb-3 mb-md-0">
+                <label class="font-weight-bold" for="fullname">Enter Email <span style="color : red; font-size: 16px;" >*</span> </label>
+                 {{form.email}}
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <div class="col-md-12 mb-3 mb-md-0">
+                <label class="font-weight-bold" for="fullname">Enter First Name <span style="color : red; font-size: 16px;" >*</span> </label>
+                 {{form.first_name}}
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <div class="col-md-12 mb-3 mb-md-0">
+                <label class="font-weight-bold" for="fullname">Enter Last Name <span style="color : red; font-size: 16px;" >*</span> </label>
+                    {{form.last_name}}
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <div class="col-md-12 mb-3 mb-md-0">
+                <label class="font-weight-bold" for="fullname">Enter Password <span style="color : red; font-size: 16px;" >*</span> </label>
+                 {{form.password1}}
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <div class="col-md-12 mb-3 mb-md-0">
+                <label class="font-weight-bold" for="fullname">Password confirmation <span style="color : red; font-size: 16px;" >*</span> </label>
+                 {{form.password2}}
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-success">Create Account</button>
+
+            </form>
+
+        
+            <br>
+             
+              
+              {% if form.errors %}
+              <div class="alert alert-danger text-center">
+                <b> Error ! Change few things. </b>
+                  {{form.errors}}
+             
+              </div>
+              {% endif %}
+            
+
+
+          </div>
+
+          <div class="col-md-3">Ads</div>
+
+
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+  	<script>
+
+
+		//Query All input fields
+		var form_fields = document.getElementsByTagName('input')
+		form_fields[1].placeholder='';
+		form_fields[2].placeholder='Username';
+		form_fields[3].placeholder='Email';
+		form_fields[4].placeholder='Enter First Name';
+    form_fields[5].placeholder='Enter Last Name';
+    form_fields[6].placeholder='Enter Password';
+    form_fields[7].placeholder='Re-enter Password';
+
+
+		for (var field in form_fields){	
+			form_fields[field].className += ' form-control'
+		}
+	</script>
+	{% endblock %}

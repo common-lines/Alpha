@@ -1,0 +1,93 @@
+<!-- Modal -->
+<div id="settings" class="modal fade container" tabindex="-1" role="dialog">
+	<div class="modal-dialog-lg">
+		<!-- Modal content-->
+		<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title text-center">Settings</h4>
+					</div>
+					<div class="modal-body">
+						<div class="panel panel-success">
+							<div class="panel-heading text-center">Seller profile</div>
+							<div class="panel-body container">
+							<div class="col-md-2">
+								<p class="text-center">Active Account</p>
+								<div class="profile-sidebar">
+								<div class="profile-userpic">
+									<img src="{{user.client.avater.url}}" class="img-responsive rounded-circle" style="width: 150px; height: 150px;" alt="">
+								</div>
+							<div class="profile-usertitle">
+								<div class="profile-usertitle-name">
+								{{request.user.first_name|title}} {{request.user.last_name|title}}
+								</div>
+							<div class="profile-usertitle-job">
+							{{user.client.institute}}
+							</div>
+							</div>
+							</div>
+
+							</div>
+							<div class="col-md-7">
+							  <div class="col-md-12 col-lg-12 mb-5">
+								<!--Profile-->
+								<h2 class="text-center">Update Your Account</h2>
+								<form  method="POST" action="{% url 'mainsetting' %}"  enctype="multipart/form-data" class="p-5 bg-white border">
+								{% csrf_token %}
+
+								<div class="row form-group">
+									<div class="col-md-12">
+									<label class="font-weight-bold" for="email">First Name</label>
+									<input type="text" name="first_name" class="form-control" value="{{request.user.first_name|title}}" required>
+									</div>
+								</div>
+
+								<div class="row form-group">
+									<div class="col-md-12">
+									<label class="font-weight-bold" for="email">Ferst Name</label>
+									<input type="text" name="last_name" class="form-control" value="{{request.user.last_name|title}}" required>
+									</div>
+								</div>
+
+								<div class="row form-group">
+									<div class="col-md-12">
+									<label class="font-weight-bold" for="email">Enter Your Phone Number</label>
+									<input type="text" name="phone" class="form-control" placeholder="Enter Phone Number Eg: +225-070-000-000" required>
+									</div>
+								</div>
+
+								{% if user.client.institute == 'UNKNOWN' or user.client.institute == None %}
+									<div class="row form-group">
+									<div class="col-md-12 mb-3 mb-md-0">
+										<label class="font-weight-bold" for="fullname">Select Your Institute<span style="color : red; font-size: 16px;" >*</span> </label>
+											<select class="input-list" name="institute">
+												<option value="UNKNOWN">...</option>
+												<option value="iaa">IAA</option>
+												<option value="mzumbe">Mzumbe</option>
+												<option value="udom">Udom</option>
+										</select>
+										</div>
+									</div>
+								{% endif %}
+
+				
+								
+								<!--profile-->
+								</div>
+								<!--/messege-->
+							</div>
+					    	   <div class="col-md-3">
+								<p class="text-center"> Sponsored</p>
+						    	<!--profile-->
+
+						    	<!--profile-->
+  						   		</div>
+							</div>
+			 		    </div>
+					</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-success">Update Profile</button>
+			</div>
+		</form>
+		</div>
+	</div>
+</div>

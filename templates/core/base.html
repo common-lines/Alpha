@@ -1,0 +1,349 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<link rel="icon" href="{% static 'images/shop/icon.png' %}" type="image/x-icon" />
+	<title>{% block title %} {% endblock %}</title>
+
+	<!-- Google font -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Roboto+Mono:300,400,500">
+
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+	
+
+	<!-- Slick -->
+	<link type="text/css" rel="stylesheet" href="{% static 'css/slick.css' %}" />
+	<link type="text/css" rel="stylesheet" href="{% static 'css/slick-theme.css' %}" />
+
+	<!-- nouislider -->
+	<link type="text/css" rel="stylesheet" href="{% static 'css/nouislider.min.css' %}" />
+
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" >
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="{% static 'css/excluded.css' %}" />
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}" />
+	<link type="text/css" rel="stylesheet" href="{% static 'css/magnific-popup.css' %}" />
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		
+	<!--//api.mapbox.com/mapbox-->
+	<link href='https://api.mapbox.com/mapbox.js/v3.2.1/mapbox.css' rel='stylesheet' />
+	<script src='https://api.mapbox.com/mapbox.js/v3.2.1/mapbox.js'></script>
+	<script src='https://api.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js'></script>
+		
+
+
+
+</head>
+
+<noscript>
+    <style type="text/css">
+        .container {display:none;}
+    </style>
+    <div class="text-center">
+ Voxmart works best with JavaScript, JavaScript is disabled. For a better experience, please enable JavaScript in your browser before proceeding.
+<br>
+		@Powerd By Python & Javascript
+    </div>
+</noscript>
+
+<body>
+	<!-- HEADER -->
+	<header>
+		<!-- top Header -->
+		<div id="top-header">
+			<div class="container">
+				<div class="pull-left">
+					<marquee behavior="scroll" direction="left">
+	       <span>Welcome to Voxmart!</span>
+          </marquee>
+						</div>
+				<div class="pull-right">
+					<ul class="header-top-links">
+						<li><a href="#">Store</a></li>
+						<li><a href="#">Store</a></li>
+						<li><a href="#">Newsletter</a></li>
+						<li><a href="#">FAQ</a></li>
+						<li class="dropdown default-dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">USD <i class="fa fa-caret-down"></i></a>
+							<ul class="custom-menu">
+								<li><a href="#">USD ($)</a></li>
+								<li><a href="#">EUR (€)</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- /top Header -->
+
+		<!-- header -->
+		<div id="header">
+			<div class="container">
+				<div class="pull-left">
+					<!-- Logo -->
+					<div class="header-logo">
+						<a class="logo" href="{% url 'home' %}">
+							<img src="{% static './img/logo.png' %}" alt="">
+						</a>
+					</div>
+					<!-- /Logo -->
+
+					<!-- Search -->
+					<div class="header-search">
+						<form method="GET" action="/search/" >
+							<input class="input search-input" type="search"  name="q" placeholder="Enter your keyword" requred>
+							<select class="input search-categories" type="search" name="category">
+								<option value="all">All Categories</option>
+								<option value="one">Category 01</option>
+								<option value="two">Category 02</option>
+							</select>
+							<button class="search-btn"><i class="fa fa-search"></i></button>
+						</form>
+					</div>
+					<!-- /Search -->
+				</div>
+				<div class="pull-right">
+					<ul class="header-btns">
+						<!-- Account -->
+						<li class="header-account dropdown default-dropdown">
+							<div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
+								<div class="header-btns-icon">
+									<i class="fa fa-user-o"></i>
+								</div>
+								<strong>Account </strong>
+							</div>
+							{% if request.user.is_authenticated %}
+							<a href="{% url 'escape' %}">Escape</a> 
+							{% else %}
+							<a href="{% url 'login' %}">Login</a>
+							{% endif %}
+							<ul class="custom-menu">
+							{% if request.user.is_authenticated %}
+							{% if request.user.is_staff %}
+								<li><a href="{% url 'administrator' %}"><img src="{% static 'images/icons/control-panel.png' %}" alt=""><i class="fa"></i>Administrator</a></li>
+							{% endif %}
+								<li><a href="{% url 'profile' %}"><i class="fa fa-user-o"></i> My Account</a></li>
+								<li><a href="{% url 'viewwish' %} "><i class="fa fa-heart-o"></i> My Wishlist</a></li>
+								<li><a href="{% url 'viewcart' %} "><i class="fa fa-shopping-cart"></i> My Cart</a></li>
+								<li><a href="{% url 'wallet' %}"><img src="{% static 'images/icons/wallet.png' %}" alt=""><i class="fa"></i> My Wallet</a></li>
+								<li><a href="{% url 'product-create' %}"><i class="fa fa-upload"></i>Post Listing</a></li>
+								<li><a href="{% url 'checkout' %}"><i class="fa fa-check"></i> Checkout</a></li>
+								<li><a href="{% url 'escape' %}"><img src="{% static 'images/icons/logout.png' %}" alt=""><i class="fa"></i> Log Out</a></li>
+								<li><a href="{% url 'subscribe' %}"><img src="{% static 'images/icons/shekel.png' %}" alt=""><i class="fa"></i>subscribe</a></li>
+							{% else %}
+								<li><a href="{% url 'subscribe' %}"><img src="{% static 'images/icons/shekel.png' %}" alt=""><i class="fa"></i> subscribe</a></li>
+								<li><a href="{% url 'login' %}"><i class="fa fa-unlock-alt"></i> Login</a></li>
+								<li><a href="{% url 'register' %}"><i class="fa fa-user-plus"></i> Create An Account</a></li> 
+							{% endif %}
+							</ul>
+						</li>
+						<!-- /Account -->
+						
+                        <!-- Cart -->
+						<li class="header-cart dropdown default-dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+								<div class="header-btns-icon">
+									<i class="fa fa-archive"></i>
+									{% if request.user.is_authenticated %}
+										{% if post_count_request > 10  %}
+										<span class="qty">10+</span>
+										{% elif post_count_request < 1  %}
+										{% else %}
+										<span class="qty">{{post_count_request}}</span>
+										{% endif %}
+									{% endif %}	
+								</div>
+								<strong>Requcest</strong>
+								<br>
+								{% if request.user.is_authenticated %}
+								<span><a href="{% url 'shop' request.user %}">My Shop</a></span>
+								{% else %}
+								<span>Shop</span>
+								{% endif %}	
+							</a>
+							{% if request.user.is_authenticated %}
+							<div class="custom-menu">
+								<div id="shopping-cart">
+									<div class="shopping-cart-list">
+										{% for widget in post_data_request %}
+                                        <div class="product product-widget">
+											<div class="product-thumb">
+												<img src="{{widget.product.image.url}}" alt="" class="rounded-circle" style="width:60px; height:60px;">
+											</div>
+											<div class="product-body">
+												<h3 class="product-price">${{widget.product.price|floatformat:"0"}} <span class="qty">Qty: {{widget.extent}}</span></h3>
+												<h2 class="product-name"><a href="{% url 'vieworder' widget.marked %}">{{widget.product.title|linebreaks|truncatechars:22|title}}</a></h2>
+											</div>
+											<hr class="hr">
+                                        </div>
+										{% endfor %}
+									</div>
+									<div class="shopping-cart-btns">
+									<a href="{% url 'demand' %}" class="primary-btn">Request <i class="fa fa-arrow-circle-right"></i></a>
+									</div>
+								</div>
+							</div>
+							{% endif %}	
+						</li>
+						<!-- /Cart -->
+
+						<!-- Mobile nav toggle-->
+						<li class="nav-toggle">
+							<button class="nav-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
+						</li>
+						<!-- / Mobile nav toggle -->
+					</ul>
+				</div>
+			</div>
+			<!-- header -->
+		</div>
+		<!-- container -->
+	</header>
+	<!-- /HEADER -->
+	{% block body %} 
+    
+    {% endblock %}
+
+
+	{% include 'include/mainsetting.html' %}
+
+
+	<!-- FOOTER -->
+	<footer id="footer" class="section section-grey">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- footer widget -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="footer">
+						<!-- footer logo -->
+						<div class="footer-logo">
+							<a class="logo" href="{% url 'home' %}">
+		            <img src="{% static './img/logo.png' %}" alt="">
+		          </a>
+						</div>
+						<!-- /footer logo -->
+
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
+
+						<!-- footer social -->
+						<ul class="footer-social">
+							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+							<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+						</ul>
+						<!-- /footer social -->
+					</div>
+				</div>
+				<!-- /footer widget -->
+
+				<!-- footer widget -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="footer">
+						<h3 class="footer-header">My Account</h3>
+						<ul class="list-links">
+							<li><a href="#">My Account</a></li>
+							<li><a href="#">My Wishlist</a></li>
+							<li><a href="#">Compare</a></li>
+							<li><a href="#">Checkout</a></li>
+							<li><a href="#">Login</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- /footer widget -->
+
+				<div class="clearfix visible-sm visible-xs"></div>
+
+				<!-- footer widget -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="footer">
+						<h3 class="footer-header">Customer Service</h3>
+						<ul class="list-links">
+							<li><a href="#">About Us</a></li>
+							<li><a href="#">Shiping & Return</a></li>
+							<li><a href="#">Shiping Guide</a></li>
+							<li><a href="#">FAQ</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- /footer widget -->
+
+				<!-- footer subscribe -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="footer">
+						<h3 class="footer-header">Stay Connected</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+						<form>
+							<div class="form-group">
+								<input class="input-email" placeholder="Enter Email Address">
+							</div>
+							<button class="primary-btn">subscribe</button>
+						</form>
+					</div>
+				</div>
+				<!-- /footer subscribe -->
+			</div>
+			<!-- /row -->
+			<hr>
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 text-center">
+				Copyright &copy; 2020-</script><script>document.write(new Date().getFullYear());</script> All Rights Reserved</a>
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</footer>
+	<!-- /FOOTER -->
+	
+	<script src="{% static 'js/jquery-3.3.1.js' %}"></script>
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/slick.min.js' %}"></script>
+	<script src="{% static 'js/nouislider.min.js' %}"></script>
+	<script src="{% static 'js/jquery.zoom.min.js' %}"></script>
+	<script src="{% static 'js/excluded.js' %}"></script>
+	<script src="{% static 'js/main.js' %}"></script>
+
+	{% if request.user.is_authenticated %}
+	{% if user.client.institute == 'UNKNOWN' or user.client.institute == None %}
+	<script>
+	$('#settings').modal('show')
+	</script>
+	<script> 
+	$(function () { $('#settings').modal('hide')})});
+	</script> 
+	<script> 
+		$(function () { $('#settings').on('hide.bs.modal', function () { 
+			return $('#settings').modal('show.bs.modal')
+			;}) 
+		}); 
+	</script>
+	{% endif %}
+	{% endif %}
+
+</body>
+
+</html>

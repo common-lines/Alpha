@@ -1,0 +1,83 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} Subscription Page {% endblock %}
+
+{% load static %}
+
+{% block body %} 
+
+{% include 'core/navigation.html' %}
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Subscription</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+         <!---->
+         <h2 class="block-title text-center"> 
+          Silver Plan's	
+          </h2>
+         <p class="text-center">Subscribe now to package of your choice, To access the market. Select the package that gives you wider range option.</p>
+            <br>
+        </div>
+
+
+      <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 box-shadow">
+          <div class="card-header panel-heading">
+            <h2 style="color: #fff;">Min</h2>
+          </div>
+          <div class="card-body panel-body text-center">
+            <h1 class="card-title pricing-card-title">2,000 <small class="text-muted">/ 15dys</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li class="b">1 Univasity</li>
+              <li class="b">2 Days Of Listing </li>
+              <li class="b">1 Listing Post</li>
+              <li class="b">15 dys Post Activation</li>
+            </ul>
+                <br>
+             <a href="{% url 'silvermin' %}" class="btn btn-lg btn-block on-click"> Purchase</a></li>
+          </div>
+        </div>
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+             <h2 style="color: #fff;">Pro</h2>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">3,500 <small class="text-muted">/ 30dys</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li class="b">1 Univasity</li>
+              <li class="b">2 Days Of Listing </li>
+              <li class="b">1 Listing Post</li>
+              <li class="b">30 dys Post Activation</li>
+            </ul>
+             <br>
+            <a href="{% url 'silverpro' %}" class="btn btn-lg btn-block on-click"> Purchase</a></li>
+
+          </div>
+        </div>
+
+
+
+  
+
+     	    </div>
+       	<!-- /row -->
+		</div>
+				<!-- /container -->
+	</div>
+	<!-- /section -->
+	{% endblock %}

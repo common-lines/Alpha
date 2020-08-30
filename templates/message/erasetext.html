@@ -1,0 +1,76 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} Blank Page {% endblock %}
+
+{% load static %}
+
+{% block body %} 
+
+{% include 'core/navigation.html' %}
+    
+
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Blank</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+                <div class="col-md-3">
+                aid
+                </div>
+                <div class="col-md-6">
+                {% for message in  messages %}
+	            <div class="alert alert-danger text-center">
+	              {{message}}
+	            </div>
+				{% endfor %}
+                <!--Panell Start-->
+                <div class="panel panel-danger">
+                    <div class="panel-heading text-center text-uppercase">Erise Note</div>
+                    <div class="panel-body container">
+					<p class="text-danger h4">{{qs}}</p>
+					<ol>
+					<li> 1. System Will Make Your Product Active</li>
+					<li> 2. System Will Reduce Your Listing Remain</li>
+					<li> 3. System Will Rederect To Listing Page</li>
+					</ol>
+					
+					</div>
+			   </div>
+               <!--panel ends-->
+
+               {% if qs.sender == request.user or qs.receiver == request.user  %}
+               <form  method="POST">
+				{% csrf_token %}
+                 <input type="hidden" name="true" value="emmanuel" >
+                 <button type="submit" class="btn btn-lg btn-block  btn-warning text-uppercase">Erise</button>
+                </form>
+               {% endif %}
+
+                
+
+
+
+                </div>
+                <div class="col-md-3">
+                aids
+                </div>
+                
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+	{% endblock %}

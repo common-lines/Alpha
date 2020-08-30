@@ -1,0 +1,130 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} Details Page {% endblock %}
+
+{% load static %}
+
+{% block body %} 
+
+{% include 'core/navigation.html' %}
+    
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Create Account</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+
+                 <div class="col-md-3">Ads</div>
+
+                <div class="col-md-6">
+                    <P class="text-center h4 text-uppercase">Update Your Store Details</P>
+                    <br>
+                 <form  method="POST" action="."  enctype="multipart/form-data" class="p-5 bg-white border">
+                    {% csrf_token %}
+                            
+                    <div class="row form-group">
+                    <div class="col-md-12 mb-3 mb-md-0">
+                        <label class="font-weight-bold" for="fullname">Update Your Store Banner<span style="color : red; font-size: 16px;" >*</span> </label>
+                        {{form.banner }}
+                    </div>
+                    </div>
+
+                    <div class="row form-group">
+                    <div class="col-md-12 mb-3 mb-md-0">
+                        <label class="font-weight-bold" for="fullname">Enter Your Shop Slogan <span style="color : red; font-size: 16px;" >*</span> </label>
+                        {{form.slogan}}
+                    </div>
+                    </div>
+
+                    <div class="row form-group">
+                    <div class="col-md-12 mb-3 mb-md-0">
+                        <label class="font-weight-bold" for="fullname">Twitter Link<span style="color : red; font-size: 16px;" >*</span> </label>
+                        {{form.twitter}}
+                    </div>
+                    </div>
+
+                    <div class="row form-group">
+                    <div class="col-md-12 mb-3 mb-md-0">
+                        <label class="font-weight-bold" for="fullname">Facebook Linl<span style="color : red; font-size: 16px;" >*</span> </label>
+                            {{form.facebook}}
+                    </div>
+                    </div>
+
+                    <div class="row form-group">
+                    <div class="col-md-12 mb-3 mb-md-0">
+                        <label class="font-weight-bold" for="fullname">Instagram Link<span style="color : red; font-size: 16px;" >*</span> </label>
+                        {{form.instagram}} 
+                    </div>
+                    </div>
+
+                    <div class="row form-group">
+                    <div class="col-md-12 mb-3 mb-md-0">
+                        <label class="font-weight-bold" for="fullname">Enter Other Social Link<span style="color : red; font-size: 16px;" >*</span> </label>
+                        {{form.behance}}
+                    </div>
+                    </div>
+
+                    <div class="row form-group">
+	                    <div class="col-md-12 mb-3 mb-md-0">
+	                      <label class="font-weight-bold" for="fullname">Active Store <span style="color : red; font-size: 16px;" >*</span> </label>
+				     <select class="input-list" name="active" >
+								<option value="{{form.active.value}}">{{form.active.value|capfirst}}</option>
+								<option value="{{form.active.value}}">...</option>
+                                <option value="market">Market</option>
+                                <option value="loan">Loan & Leanding (Loan)</option>
+                                <option value="media">Movies, Games & Software (Media)</option>
+                    </select>
+                    <strong class="help-block text-center h6">Plese Select Active Shop Products That Can Be Visible In Your Store Page.</strong>
+                    </div>
+                </div>
+                    <button type="submit" class="btn btn-success">Update My store</button>
+                </form>
+
+                
+
+
+                {% if error %}
+                  <div class="alert alert-danger text-center">
+                     <b class="text-center">Error ! </b>
+                       {{error}}
+                  </div>
+				{% endif %}
+
+                 </div>
+
+                 <div class="col-md-3">Ads</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+  	<script>
+		//Query All input fields
+		var form_fields = document.getElementsByTagName('input')
+		form_fields[1].placeholder='';
+		form_fields[2].placeholder='Username';
+		form_fields[3].placeholder='Email';
+		form_fields[4].placeholder='Enter First Name';
+        form_fields[5].placeholder='Enter Last Name';
+        form_fields[6].placeholder='Enter Password';
+        form_fields[7].placeholder='Re-enter Password';
+
+		for (var field in form_fields){	
+			form_fields[field].className += ' form-control'
+		}
+	</script>
+	{% endblock %}

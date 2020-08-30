@@ -1,0 +1,384 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} Subscription Page {% endblock %}
+
+{% load static %}
+
+{% block body %} 
+
+{% include 'core/navigation.html' %}
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Subscription</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+				<br>
+				 <div class="fb-profile">
+
+				
+				<div class="slider">
+							<img align="left" class="fb-image-lg item" src="{{owner.store.banner.url}}" alt="Banner Image"/>
+
+				</div>
+
+				<!--Test Bar-->
+
+
+
+
+
+
+					<div class="twPc-button">
+						<div class="bottom">
+							<a class="btn btn-primary btn-twitter btn-sm" href="{{owner.store.twitter}}" target="_blank">
+								<i class="fa fa-twitter"></i>
+							</a>
+							<a class="btn btn-danger btn-sm" rel="publisher" href="{{owner.store.instagram}}" target="_blank">
+								<i class="fa fa-google-plus"></i>
+							</a>
+							<a class="btn btn-primary btn-sm" rel="publisher" href="{{owner.store.facebook}}" target="_blank">
+								<i class="fa fa-facebook"></i>
+							</a>
+							<a class="btn btn-warning btn-sm" rel="publisher" href="{{owner.store.behance}}" target="_blank">
+								<i class="fa fa-behance"></i>
+							</a>
+							
+						</div>
+					
+					 </div>
+					<img align="left" class="fb-image-profile thumbnail rounded-circle" src="{{owner.client.avater.url}}" alt="Profile image example"/>
+					<div class="fb-profile-text">
+						<h1>{{owner.first_name|title}} {{owner.last_name|title}}</h1> <!--<h1>Eli Macy</h1>-->
+						<p>{{owner.store.slogan|title}}</p>
+					</div>
+				</div>
+				<br>
+
+				{% if owner == request.user %}
+				{% if owner.client.professional == False  %}
+	            <div class="alert alert-danger text-center">
+	              <p>Subscribe For Professinal For Edit & Other User To View Your Online Store </p>
+	            </div>
+				
+	            
+				<a href="{% url 'professinal' %}" class="btn btn-lg btn-block btn-success">Subscribe </a>
+
+					<br>
+				{% endif %}
+				{% endif %}
+
+				<!-- row -->
+			<div class="row">
+				<!-- ASIDE -->
+				<div id="aside" class="col-md-3">
+					{% if owner == request.user %}
+					{% if owner.client.professional == False  %}
+						<!-- aside widget -->
+					<div class="aside">
+						<h3 class="aside-title">Edit My Shop</h3>
+						<a href="{% url 'home' %}" class="btn btn-lg btn-block btn-danger">Edit</a>
+					</div>
+					<!-- /aside widget -->
+					{% else %}
+						<!-- aside widget -->
+					<div class="aside">
+						<h3 class="aside-title">Edit My Shop</h3>
+						<a href="{% url 'amend' request.user  %}" class="btn btn-lg btn-block btn-success">Edit</a>
+					</div>
+					<!-- /aside widget -->
+					{% endif %}
+					{% else %}
+						<!-- aside widget -->
+					<div class="aside">
+						<h3 class="aside-title">Contact</h3>
+						<a href="{% url 'createcontact' owner %}" class="btn btn-lg btn-block btn-success">Add To My Contact</a>
+					</div>
+					<!-- /aside widget -->
+					{% endif %}
+
+					<!-- aside widget -->
+					<div class="aside">
+						<h3 class="aside-title">Message</h3>
+						<form action="{% url 'message' %}" method="POST"  class="p-5 bg-white border">
+							{% csrf_token %}
+								<input type="text" name="receiver" value="{{owner}}" class="sr-only" readonly>	
+									<div class="row form-group">
+										<div class="col-md-12 mb-3 mb-md-0">
+											<label class="font-weight-bold h4" for="fullname">Subject</label>
+										<input type="text" name="subject" class="form-control" placeholder="Enter Message Sebject" required>
+										</div>
+									</div>
+									 <div class="row form-group">
+										<div class="col-md-12">
+										<label class="font-weight-bold h4" for="message">Message</label>
+										<textarea name="texting" id="texting" cols="10" rows="5" class="form-control" placeholder="Enter Your Message" required></textarea>
+										</div>
+									</div>
+							{% if owner == request.user %}
+								<p class="btn btn-danger">No, You Can't</p>
+							{% else %}
+							<button type="submit" class="btn btn-success">Send Message</button>
+							{% endif %}
+						</form>
+					</div>
+					<!-- /aside widget -->
+
+					<!-- aside widget -->
+					<div class="aside">
+						<h3 class="aside-title">Owner Details</h3>
+						<ul class="list-links">
+							<li><a href="#"><b>P. Number:</b> {{owner.client.phone}}</a></li>
+							<li><a href="#"><b>Email:</b> {{owner.email}} </a></li>
+							<li><a href="#"><b>Verfied:</b> {{owner.client.verified}} </a></li>
+							<li><a href="#"><b>Institute:</b> {{owner.client.institute}} </a></li>
+							<li><a href="#"><b>Region:</b> {{owner.client.region}}</a></li>
+							<li><a href="#"><b>Country:</b> {{owner.client.country}} </a></li>
+							<li><a href="#"><b>Institute:</b> {{owner.client.country}}</a></li>
+						</ul>
+					</div>
+					<!-- /aside widget -->
+
+					<!-- aside widget -->
+					<div class="aside">
+						<h3 class="aside-title">About seller</h3>
+						<p class="text-justify">{{owner.client.about}}</p>
+					</div>
+					<!-- /aside widget -->
+
+					<!-- aside widget -->
+					<div class="aside">
+						<h3 class="aside-title">Make Report</h3>
+						<h5 class="text-center">Report These Seller</h5>
+						<form action="." method="POST"  class="p-5 bg-white border">
+							{% csrf_token %}
+								<input type="text" name="receiver" value="." class="sr-only" readonly>	
+
+									<div class="row form-group">
+										<div class="col-md-12 mb-3 mb-md-0">
+											<label class="font-weight-bold h4" for="fullname">Subject</label>
+										<input type="text" name="subject" class="form-control" placeholder="Enter Message Sebject" required>
+										</div>
+									</div>
+									
+								<div class="row form-group">
+	     						  <div class="col-md-12 mb-3 mb-md-0">
+	       							  <label class="font-weight-bold" for="fullname">Report Concern</label>
+										<select class="input-list" name="kind" id="id_kind">
+											<option value="none">...</option>
+											<option value="new">Stolen Product</option>
+											<option value="used">Scam</option>
+		   							   </select>
+										</div>
+									</div>
+									 <div class="row form-group">
+										<div class="col-md-12">
+										<label class="font-weight-bold h4" for="message">Reason To Report</label>
+										<textarea name="texting" id="texting" cols="10" rows="5" class="form-control" placeholder="Enter Your Message" required></textarea>
+										</div>
+									</div>
+							{% if owner == request.user %}
+								<p class="btn btn-danger">No, You Can't</p>
+							{% else %}
+							<button type="submit" class="btn btn-success">Send Message</button>
+							{% endif %}
+						</form>
+					</div>
+					<!-- /aside widget -->
+
+				</div>
+				<!-- /ASIDE -->
+
+				<!-- MAIN -->
+				<div id="main" class="col-md-9">
+					<!-- store top filter -->
+					<div class="store-filter clearfix">
+						<div class="pull-right">
+							<div class="row-filter">
+								<a href="#" class="active"><i class="fa fa-th-large"></i></a>
+								<a href="#"><i class="fa fa-bars"></i></a>
+							</div>
+						</div>
+					</div>
+					<!-- /store top filter -->
+
+					<!-- STORE -->
+					<div id="store">
+						<!-- row -->
+						<div class="row">
+
+
+
+					{% for x in data %}
+				 <!-- Product Single -->
+							<div class="col-md-4 col-sm-6 col-xs-6">
+								<div class="product product-single">
+									<div class="product-thumb">
+									  <div class="product-label">
+									  		{% if x.kind == "new" %}
+											<span>{{x.kind}}</span>
+											{% else %}
+											<span class="sale">{{x.kind}}</span>
+											{% endif %}
+										</div>
+										<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+										<img src="{{x.image.url}}" alt="" style="width: {% widthratio 259px 200 100 as width %}; height: 360px;">
+									</div>
+									<div class="product-body">
+										<h3 class="product-price">${{x.price}}</h3>
+										<div class="product-rating">
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o empty"></i>
+										</div>
+										<h3 class="product-name">{{x.title|title}}</h3>
+										<div class="product-btns">
+											<a href=" {% url 'wishlist' x.slug %} "class="main-btn icon-btn"><i class="fa fa-heart"></i></a>
+											<a href='{{x.get_absolute_url}}' class="primary-btn">ChecDetails</a>
+											<a href=" {% url 'cart' x.slug %} "class="main-btn icon-btn"><i class="fa fa-shopping-cart"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							{% if forloop.counter == 2 %}
+							<div class="clearfix visible-sm visible-xs"></div>
+							{% elif forloop.counter == 3  %}
+							<div class="clearfix visible-md visible-lg"></div>
+							{% elif forloop.counter == 4  %}
+							<div class="clearfix visible-sm visible-xs"></div>
+							{% elif forloop.counter == 6  %}
+							<div class="clearfix visible-md visible-lg visible-sm visible-xs"></div>
+							{% elif forloop.counter == 8  %}
+							<div class="clearfix visible-sm visible-xs"></div>
+							{% endif %}	
+						{% endfor %}
+
+						{% if media %}
+						{% for x in media %} 
+							<div class="col-sm-6 col-md-4">
+							<div class="card mb-4 shadow-sm thumbnail">
+								<img src="{{x.image.url}}"  style="width: 100%; height: 500px;" text="Thumbnail">
+								<div class="card-body">
+									<p class="card-text text-center">{{x.title}}</p>
+									<div class="btn-group btn-group-justified" role="group" aria-label="...">
+									<div class="btn-group" role="group">
+										<button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'moviedetail' x.slug %}" >Request</a></button>
+									</div>
+									<div class="btn-group" role="group">
+									</div>
+									<div class="btn-group" role="group">
+										<small class="text-muted"><b style="color: black">Tsh {{x.price}}</b></small>
+									</div>
+									</div>
+								</div>
+								</div>
+							</div>
+						{% endfor %}
+						{% endif %}
+
+						{% if loan %}
+						{% for x in loan %}
+							<div class="col-md-6 col-lg-4 mb-4">
+							<a href="{% url 'loanbase' x.slug %}" class="prop-entry d-block">
+							<figure class="banner banner-2">
+								<img src="{{x.image.url}}" alt="Image" class="img-fluid-setting">
+							</figure>
+							<div class="prop-text">
+								<div class="inner">
+								<span class="price rounded">MIN : {{x.minmun}}</span>
+								<span class="price rounded">MAX: {{x.maxmum}}</span>
+								<h3 class="title">by: {{x.title}}</h3>
+								<p class="location"><span class="title">Collateral:</span> {{x.collateral}}</p>
+								</div>
+								<div class="prop-more-info">
+								<div class="inner d-flex">
+									<div class="col">
+									<span>Duration:</span>
+									<strong class="span">{{x.duration}}</strong>
+									</div>
+									<div class="col">
+									<span>Monthly:</span>
+									<strong class="span">{{x.monthly}}</strong>
+									</div>
+									<div class="col">
+									<span>2 weeks:</span>
+									<strong class="span">{{x.weeksii}}</strong>
+									</div>
+									<div class="col">
+									<span>Weeky R:</span>
+									<strong class="span">{{x.weeklyr}}</strong>
+									</div>
+								</div>
+								</div>
+							</div>
+							</a>
+						</div>
+						{% endfor %}
+						{% endif %}
+
+
+
+
+
+
+						</div>
+						<!-- /row -->
+					</div>
+					<!-- /STORE -->
+					{% if data %}
+					<!-- store bottom filter -->
+					<div class="store-filter clearfix">
+						<div class="pull-right">
+						{% include 'include/paginated.html' with page=data %}
+						</div>
+					</div>
+					{% elif media %}
+					<!-- store bottom filter -->
+					<div class="store-filter clearfix">
+						<div class="pull-right text-center">
+						{% include 'include/paginated.html' with page=media %}
+						</div>
+					</div>
+
+					{% elif loan %}
+					<!-- store bottom filter -->
+					<div class="store-filter clearfix">
+						<div class="pull-right text-center">
+						{% include 'include/paginated.html' with page=loan %}
+						</div>
+					</div>
+					<!-- /store bottom filter -->
+					<!-- /store bottom filter -->
+					{% else %}
+					<!-- /store bottom filter -->
+					{% endif %}
+				</div>
+				<!-- /MAIN -->
+			</div>
+			<!-- /row -->
+			
+				
+		
+		
+		
+		
+		
+		
+		</div>
+				<!-- /container -->
+	</div>
+	<!-- /section -->
+	{% endblock %}

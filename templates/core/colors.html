@@ -1,0 +1,159 @@
+{% extends 'core/base.html' %}
+
+{% block title %} Blank Page {% endblock %}
+
+{% load static %}
+
+{% block body %} 
+
+{% include 'core/navigation.html' %}
+    
+
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Blank</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+			{% for message in  messages %}
+	            <div class="alert alert-danger text-center">
+	              {{message}}
+	            </div>
+				{% endfor %}
+
+            <form  method="POST"  class="p-5 bg-white border">
+
+				{% csrf_token %}
+
+		<div class="row form-group">
+		 <P class="text-center h4 text-uppercase">set product size</P>
+	       <div class="col-md-12 mb-3 mb-md-0">
+	         <label class="font-weight-bold" for="fullname">Headline (size)<span style="color : red; font-size: 16px;" >*</span> </label>
+				<select class="input-list" name="size">
+					<option value="size">Size</option>
+					<option value="digital">Digtal</option>
+					<option value="food">Food</option>
+					<option value="acessories">Accesories</option>
+		      </select>
+	        </div>
+		  <div class="col-md-3">
+		 	<div class="row form-group">
+	            <div class="col-md-12 mb-3 mb-md-0">
+	             <label class="font-weight-bold" for="fullname">Enter Data</label>
+	             {{Size_form.fild1}}
+	            </div>
+	        </div>
+		  </div>
+		   <div class="col-md-3">
+				<div class="row form-group">
+	           		<div class="col-md-12 mb-3 mb-md-0">
+	                 <label class="font-weight-bold" for="fullname">Enter Data </label>
+	                 {{Size_form.fild2}}
+	             	</div>
+	            </div>
+			</div>
+			<div class="col-md-3">
+			    <div class="row form-group">
+	                <div class="col-md-12 mb-3 mb-md-0">
+	                  <label class="font-weight-bold" for="fullname">Enter Data  </label>
+	                  {{Size_form.fild3}}
+	                </div>
+	            </div>
+			</div>
+			<div class="col-md-3">
+				<div class="row form-group">
+	             	<div class="col-md-12 mb-3 mb-md-0">
+	                  <label class="font-weight-bold" for="fullname">Enter Data </label>
+	                  {{Size_form.fild4}}
+	              </div>
+	            </div>
+			</div>
+		</div>
+         <hr class"hr">
+		 <P class="text-center h4 text-uppercase">set product colors</P>
+		<div class="row form-group">
+	       <div class="col-md-12 mb-3 mb-md-0">
+	         <label class="font-weight-bold" for="fullname">Select Color<span style="color : red; font-size: 16px;" >*</span> </label>
+					<select class="input-list" name="color">
+					<option value="colors">Colors</option>
+					<option value="digital">Digtal</option>
+					<option value="food">Food</option>
+					<option value="acessories">Accesories</option>
+		      </select>
+	        </div>
+			 <div class="col-md-3">
+				<div class="row form-group">
+	           		<div class="col-md-12 mb-3 mb-md-0">
+	                 <label class="font-weight-bold" for="fullname">Enter Data </label>
+	                 {{form.color1}}  
+	             	</div>
+	            </div>
+			</div>
+
+		   <div class="col-md-3">
+				<div class="row form-group">
+	           		<div class="col-md-12 mb-3 mb-md-0">
+	                 <label class="font-weight-bold" for="fullname">Enter Data </label>
+	                 {{form.color2}} 
+	             	</div>
+	            </div>
+			</div>
+
+			 <div class="col-md-3">
+				<div class="row form-group">
+	           		<div class="col-md-12 mb-3 mb-md-0">
+	                 <label class="font-weight-bold" for="fullname">Enter Data </label>
+	                 {{form.color3}}
+	             	</div>
+	            </div>
+			</div>
+
+			 <div class="col-md-3">
+				<div class="row form-group">
+	           		<div class="col-md-12 mb-3 mb-md-0">
+	                 <label class="font-weight-bold" for="fullname">Enter Data </label>
+	                 {{form.color4}}
+	             	</div>
+	            </div>
+			</div>
+	     
+
+             
+
+		 </div>
+
+            <button type="submit" class="btn btn-success">Continue <i class="fa fa-arrow-circle-right"></i></button>
+
+	     </form>
+
+
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+	 	<script>
+		//Query All input fields
+		var fields = document.getElementsByTagName('input')
+		fields[1].className += ' form-control';
+		fields[2].className += ' form-control';
+		fields[3].className += ' form-control';
+		fields[4].className += ' form-control';
+     	fields[5].className += ' form-control';
+     	fields[6].className += ' form-control';
+        fields[7].className += ' form-control';
+		fields[8].className += ' form-control';
+        fields[9].className += ' form-control';
+	</script>
+	{% endblock %}

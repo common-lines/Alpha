@@ -1,0 +1,224 @@
+{% extends 'core/base.html' %}
+
+{% block title %} Blank Page {% endblock %}
+
+{% load static %}
+
+{% block body %} 
+
+{% include 'core/navigation.html' %}
+    
+
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Blank</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+               <!--Settings-->
+                <div class="col-md-2">
+
+
+       <div class="profile-sidebar">
+          <div class="profile-userpic">
+              <img src="{{user.client.avater.url}}" class="img-responsive rounded-circle" style="width: 150px; height: 150px;" alt="">
+        </div>
+      <div class="profile-usertitle">
+        <div class="profile-usertitle-name">
+           {{request.user.first_name|title}} {{request.user.last_name|title}}
+         </div>
+       <div class="profile-usertitle-job">
+             {{user.client.institute}}
+       </div>
+     </div>
+
+    <div class="profile-usermenu">
+      <ul class="nav">
+        <li>
+          <a href="{% url 'profile' %}">
+          <i class="fa fa-anchor"></i>
+          Account </a>
+        </li>
+        <li>
+          <a href="{% url 'wallet' %}">
+          <i class="fa fa-snowflake-o"></i>
+          Wallet </a>
+        </li>
+        <li>
+          <a href="{% url 'squeeze' %}">
+          <i class="fa fa-reorder"></i>
+           Listing </a>
+        </li>
+        <li>
+          <a href="{% url 'demand' %}">
+          <i class="fa fa-archive"></i>
+           Request </a>
+        </li>
+        <li  class="active">
+          <a href="#"  ><!--target="_blank"-->
+          <i class="fa fa-shopping-basket"></i>
+         Orders</a>
+        </li>
+        <li>
+          <a href="{% url 'shop' request.user %}">
+          <i class="fa fa-shopping-bag"></i>
+          Shop</a>
+        </li>
+        <li>
+          <a href="{% url 'contact' %}">
+          <i class="fa fa-book"></i>
+          Contacts</a>
+        </li>
+          <li >
+          <a href="{% url 'settings' %}">
+          <i class="fa fa-wrench"></i>
+          Settings </a>
+        </li>
+      </ul>
+    </div>
+    </div>
+
+    </div>
+       <div class="col-md-8">
+	   			{% for message in  messages %}
+				<div class="alert alert-success text-center">
+				{{message}}
+				</div>
+				{% endfor %}
+                <!--My Orders-->
+               <div class="col-md-12">
+			     <p class="block-title text-center">My Orders</p>
+					<div class="order-summary clearfix">
+						<div class="section-title">
+							<h3 class="title">Order Review</h3>
+						</div>
+						<table class="shopping-cart-table table">
+							<thead>
+								<tr>
+									<th>Product</th>
+									<th></th>
+									<th class="text-center">Price</th>
+									<th class="text-center">Quantity</th>
+									<th class="text-center">Total</th>
+									<th class="text-right"></th>
+								</tr>
+						</thead>
+							<tbody>
+       					        {% for x in post %}
+									{% if x.terminate == False %}
+									<tr>
+										<td class="thumb"><img src="{{x.product.image.url}}" alt="" class="rounded-circle"></td>
+										<td class="details">
+										<a href="{% url 'vieworder' x.marked %}" style="font-size: 18px;"><b>{{x.product.title|linebreaks|truncatechars:22|title}}</b></a>
+											<ul>
+												<li><span>{{x.size|title }}: {{ x.size01|title }}</span></li>
+												<li><span>{{x.color|title }}: {{x.color01|title}}</span></li>
+											</ul>
+										</td>
+										<td class="price text-center"><strong>${{x.product.price|floatformat:"1"}}</strong><br><del class="font-weak product-old-price"><small>${{x.product.price_cancel|floatformat:"1"}}</small></del></td>
+										<td class="qty text-center"><input class="input" type="number" value="{{x.extent}}" style="background: #DADADA;" readonly></td>
+										<td class="total text-center"><strong class="primary-color">{{x.get_total}}</strong></td>
+										<td class="text-right"><a href="{% url 'orderdelete' x.marked %}" class="main-btn icon-btn"><i class="fa fa-close"></i></a>
+									</tr>
+									{% elif x.terminate == True %}
+									<tr>
+										<td class="thumb"><img src="{{x.product.image.url}}" alt="" class="rounded-circle"></td>
+										<td class="details">
+											<p style="font-size: 18px;"><b class="primary-color" >Delited by Seller</b></p>
+										</td>
+										<td class="price text-center"><strong class="primary-color" > - </strong></td>
+										<td class="qty text-center"><input class="input" type="text" value="-" style="background: #DADADA;" readonly></td>
+										<td class="total text-center"><strong class="primary-color">-</strong></td>
+										<td class="text-right"><a href="{% url 'orderdelete' x.marked %}" class="main-btn icon-btn"><i class="fa fa-close"></i></a></td>
+									</tr>
+									{% else %}
+									  None
+									{% endif %}
+            			     {% endfor %}
+							</tbody>
+								<tfoot>
+									<tr>
+										<th class="empty" colspan="3"></th>
+										<th>SUBTOTAL</th>
+										<th colspan="2" class="sub-total">${{price}}</th>
+									</tr>
+									<tr>
+										<th class="empty" colspan="3"></th>
+										<th>ITEM QUANTITY</th>
+										<td colspan="2">{{quatity}}</td>
+									</tr>
+									<tr>
+										<th class="empty" colspan="3"></th>
+										<th>TOTAL</th>
+										<th colspan="2" class="total">${{price}}</th>
+									</tr>
+								</tfoot>
+							</table>
+							<div class="pull-right"> 
+								<a href="{% url 'checkout' %}" class="primary-btn">Shipping</a>
+							</div>
+					</div>	
+
+					
+					{% if administrator %}
+					 	<div class="order-summary clearfix">
+						<div class="section-title">
+							<h3 class="title">Shipping Orders</h3>
+						</div>
+						<table class="shopping-cart-table table">
+						    <thead>
+							    <tr>
+									<th>Product</th>
+									<th></th>
+									<th class="text-center">Price</th>
+									<th class="text-center">Quantity</th>
+									<th class="text-center">Total</th>
+								</tr>
+							</thead>
+							<tbody>
+       					        {% for x in administrator %}
+									<tr>
+										<td class="thumb"><img src="{{x.product.image.url}}" alt="" class="rounded-circle"></td>
+										<td class="details">
+										<a href="{% url 'vieworder' x.marked %}" style="font-size: 18px;"><b>{{x.product.title|linebreaks|truncatechars:22|title}}</b></a>
+											<ul>
+												<li><span>{{x.size|title }}: {{ x.size01|title }}</span></li>
+												<li><span>{{x.color|title }}: {{x.color01|title}}</span></li>
+											</ul>
+										</td>
+										<td class="price text-center"><strong>${{x.product.price|floatformat:"1"}}</strong><br><del class="font-weak product-old-price"><small>${{x.product.price_cancel|floatformat:"1"}}</small></del></td>
+										<td class="qty text-center"><input class="input" type="number" value="{{x.extent}}" style="background: #DADADA;" readonly></td>
+										<td class="total text-center"><strong class="primary-color">{{x.get_total}}</strong></td>
+									</tr>
+            			     {% endfor %}
+								</tbody>
+							</table>
+						</div>
+					{% endif %}
+                <!--/My Ordees-->
+				</div>
+            </div>
+
+            <div class="dcol-md-2">AID
+              
+            </div>
+
+               <!--setinds end-->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+	{% endblock %}

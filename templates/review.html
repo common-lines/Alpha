@@ -1,0 +1,43 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} Blank Page {% endblock %}
+
+{% load static %}
+
+{% block body %} 
+
+{% include 'core/navigation.html' %}
+    
+
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Blank</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+
+			{% for message in  messages %}
+	           <div class="alert alert-danger text-center">
+	              <b class="text-center">Error ! </b>
+				    {{message}}
+	            </div>
+				{% endfor %}
+
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+	{% endblock %}

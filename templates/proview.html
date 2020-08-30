@@ -1,0 +1,48 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} Blank Page {% endblock %}
+
+{% load static %}
+
+{% block body %} 
+
+{% include 'core/navigation.html' %}
+    
+
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Blank</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+
+						
+					
+					    <img src="{{qs.image.url}}" alt="">
+						<img src="{{one.image2.url}}" alt="">	
+						<img src="{{one.image3.url}}" alt="">	
+						<img src="{{one.image4.url}}" alt="">	
+						<img src="{{one.image5.url}}" alt="">
+						<img src="{{one.image1.url}}" alt="">
+           
+
+
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+	{% endblock %}

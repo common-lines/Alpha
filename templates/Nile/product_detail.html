@@ -1,0 +1,581 @@
+{% extends 'core/base.html' %}
+
+{% block title %} {{object.username}} | {{object.title}} {% endblock %}
+
+{% load static %}
+
+{% block body %}
+
+{% include 'core/navigation.html' %}
+
+
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li><a href="#">Products</a></li>
+				<li><a href="#">Category</a></li>
+				<li class="active">Product Name Goes Here</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!--  Product Details -->
+				<div class="product product-details clearfix">
+					<div class="col-md-6">
+						<div id="product-main-view">
+							<div class="product-view">
+								<img src="{{object.image.url}}" alt="">
+							</div>
+							<div class="product-view">
+								<img src="{{object.vision.image1.url}}" alt="">
+							</div>
+							<div class="product-view">
+								<img src="{{object.vision.image2.url}}" alt="">
+							</div>
+							<div class="product-view">
+								<img src=" {{object.vision.image3.url}}" alt="">
+							</div>
+							<div class="product-view">
+								<img src=" {{object.vision.image4.url}}" alt="">
+							</div>
+							<div class="product-view">
+								<img src=" {{object.vision.image5.url}}" alt="">
+							</div>
+						</div>
+						<div id="product-view">
+							<div class="product-view">
+								<img src="{{object.image.url}}" alt="">
+							</div>
+							<div class="product-view">
+								<img src="{{object.vision.image1.url}}" alt="">
+							</div>
+							<div class="product-view">
+								<img src="{{object.vision.image2.url}}" alt="">
+							</div>
+							<div class="product-view">
+								<img src=" {{object.vision.image3.url}}" alt="">
+							</div>
+							<div class="product-view">
+								<img src=" {{object.vision.image4.url}}" alt="">
+							</div>
+							<div class="product-view">
+								<img src=" {{object.vision.image5.url}}" alt="">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="product-body">
+							<div class="product-label">
+							</div>
+							<h2 class="product-name">{{object.title|title}}</h2>
+							<div>
+								<div class="product-rating">
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star-o empty"></i>
+								</div>
+								<a href="#">3 Review(s) | </a>
+										<a href="#" data-toggle="modal" data-target="#myModal" style="font-weight: bold; color: #28a745;">Contact Seller</a>
+								</div>
+							</div>
+							<p style="color: #28a745; font-weight: bold;"><strong>Availability: </strong>{{object.availability}} </p>
+							<h3 class="product-price">${{object.price}} <del class="product-old-price">${{object.price_cancel}} </del></h3>
+							<div class="product_details_text">
+								<p>{{object.sample|title}}</p>
+							</div>
+							<form  method="POST" action="{% url 'request' object.slug %}" method="POST"  >
+  								{% csrf_token %}
+
+							<div class="product-options">
+									<ul class="size-option">
+									<!--Hidden Input-->
+									 <input type="hidden" name="seller" value="{{object.username}}">
+									 <input type="hidden" name="size" value="{{object.size.title}}">
+									<!--/Hidden Input-->
+									<span class="text-uppercase h3">{{object.size.title}}<span style="color:red;">*</span> </span>
+									<select class="input" name="size01">
+											<option>{{object.size.fild1|title}}</option>
+											<option>{{object.size.fild2|title}}</option>
+											<option>{{object.size.fild3|title}}</option>
+											<option>{{object.size.fild4|title}}</option>
+									</select>
+								</ul>
+								<br>
+								<ul class="color-option">
+									<!--Hidden Input-->
+									 <input type="hidden" name="color" value="{{object.color.title}}">
+
+									<!--/Hidden Input-->
+									<span class="text-uppercase h3">{{object.color.title}}<span style="color:red;">*</span> </span>
+									<select class="input" name="color01">
+											<option>{{object.color.color1|title}}</option>
+											<option>{{object.color.color2|title}}</option>
+											<option>{{object.color.color3|title}}</option>
+											<option>{{object.color.color4|title}}</option>
+									</select>
+								</ul>
+							</div>
+							<br>
+
+							<div class="product-btns">
+								<div class="qty-input">
+									<span class="text-uppercase">QTY: </span>
+									<input class="input" type="number" name="extent" value="1">
+								</div>
+
+
+						    	<button type="submit" class="primary-btn add-to-cart">Request</button>
+      					    </form>
+								<br>
+								<div class="pull-right">
+								<a href=" {% url 'wishlist' object.slug %} "class="main-btn icon-btn"><i class="fa fa-heart"></i></a>
+									<!-- strat-->
+								{% if object.username == request.user  %}
+								<div class="btn-group dropup">
+					                <button type="button" class="main-btn icon-btn dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-cog"></i> </button>
+					          			 <ul class="dropdown-menu" role="menu">
+											 <li class="text-center">Settings</li>
+											 <li class="divider"></li>
+											 <li><a href="#">Action</a></li>
+											 <li><a href="#">Another action</a></li>
+											 <li><a href="#">Something else here</a></li>
+											 <li class="divider"></li>
+										 <li><a href="#">Disable Product</a></li>
+										</ul>
+								</div>
+									{% else %}
+								<div class="btn-group dropup">
+					                <button type="button" class="main-btn icon-btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-gavel"></i></button>
+					          			 <ul class="dropdown-menu" role="menu">
+											 <li class="text-center">Repot</li>
+											 <li class="divider"></li>
+											 <li><a href="#">Repot Product</a></li>
+										</ul>
+								</div>
+									{% endif %}
+									<!-- ENDS-->
+									<a href=" {% url 'cart' object.slug %} "class="main-btn icon-btn"><i class="fa fa-shopping-cart"></i></a>
+								</div>
+
+
+
+
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-12">
+						<div class="product-tab">
+							<ul class="tab-nav">
+								<li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
+								<li><a data-toggle="tab" href="#tab2">Specification</a></li>
+								<li><a data-toggle="tab" href="#tab3">Reviews</a></li>
+							</ul>
+							<div class="tab-content">
+								<div id="tab1" class="tab-pane fade in active">
+									<br>
+									<p>{{object.description|safe}}</p>
+								</div>
+
+								<div id="tab2" class="tab-pane fade in">
+									<br>
+									<!--Table Start-->
+									<table class="shopping-cart-table table">
+									<thead>
+										<tr>
+										<th>Features</th>
+										<th class="text-center">Details</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+										 <td class="details"><a href="#">{{object.pattern.tab1|title}}</a></td>
+										 <td class="details text-center"><a href="#">{{object.pattern.det1|title}}</a></td>
+										</tr>
+										<tr>
+										 <td class="details"><a href="#">{{object.pattern.tab2|title}}</a></td>
+										   <td class="details text-center"><a href="#">{{object.pattern.det2|title}}</a></td>
+										</tr>
+										<tr>
+										   <td class="details"><a href="#">{{object.pattern.tab3|title}}</a></td>
+										   <td class="details text-center"><a href="#">{{object.pattern.det3|title}}</a></td>
+										</tr>
+										<tr>
+										   <td class="details"><a href="#">{{object.pattern.tab4|title}}</a></td>
+										   <td class="details text-center"><a href="#">{{object.pattern.det4|title}}</a></td>
+										</tr>
+										<tr>
+										   <td class="details"><a href="#">{{object.pattern.tab5|title}}</a></td>
+										   <td class="details text-center"><a href="#">{{object.pattern.det5|title}}</a></td>
+										</tr>
+									</tbody>
+
+								</table>
+									<!--Tables Ends-->
+								</div>
+								<div id="tab3" class="tab-pane fade in">
+									<br>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="product-reviews">
+											{% for item in item_list %}
+												<div class="single-review">
+													<div class="review-heading">
+															<img
+																src="{{item.author.client.avater.url}}"
+																alt=""
+																style="width: 70px; height: 70px;"
+																class="rounded-circle"
+															/>
+														<br>
+														<div><a href="#"><b>{{item.author.first_name|title}} {{item.author.last_name|title}}</b> </a></div>
+														<div><a href="#">{{item.time}} </a></div>
+														<div class="review-rating pull-right">
+															{% if item.rating == 1 %}
+																<i class="fa fa-star"></i>
+															{% elif item.rating == 2 %}
+																<i class="fa fa-star"></i>
+																<i class="fa fa-star"></i>
+															{% elif item.rating == 3 %}
+																<i class="fa fa-star"></i>
+																<i class="fa fa-star"></i>
+																<i class="fa fa-star"></i>
+															{% elif item.rating == 4 %}
+																<i class="fa fa-star"></i>
+																<i class="fa fa-star"></i>
+																<i class="fa fa-star"></i>
+																<i class="fa fa-star"></i>
+															{% elif item.rating == 5 %}
+																<i class="fa fa-star"></i>
+																<i class="fa fa-star"></i>
+																<i class="fa fa-star"></i>
+																<i class="fa fa-star"></i>
+																<i class="fa fa-star"></i>
+															{% endif %}
+														</div>
+													</div>
+													<div class="review-body">
+														<p>{{item.comment}}</p>
+													</div>
+													<hr>
+												</div>
+												{% endfor%}
+												<ul class="store-pages pull-right">
+													{% include 'include/paginated.html' with page=item_list %}
+												</ul>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<h4 class="text-uppercase text-center">Write Your Review</h4>
+											<p>Your email address will not be published:</p>
+
+
+											<form method="POST" action="{% url 'review' object.slug %}"  class="review-form">
+												{% csrf_token %}
+												<div class="form-group">
+													<input class="input" type="text" placeholder="{{request.user.first_name|title}} {{request.user.last_name|title}}" style="background : 000"readonly/>
+												</div>
+												<div class="form-group">
+													<input class="input" type="email" placeholder="{{request.user.email}}" style="background : 000" readonly />
+													<input class="hidden" type="text" name="slug" value="{{object.slug}}" />
+												</div>
+												<div class="form-group">
+													<textarea class="input" name="review"  maxlength="255" placeholder="Your review"></textarea>
+												</div>
+												<div class="form-group">
+													<div class="input-rating">
+														<strong class="text-uppercase">Your Rating: </strong>
+														<div class="stars">
+															<input type="radio" id="star5" name="rating" value="5" /><label for="star5"></label>
+															<input type="radio" id="star4" name="rating" value="4" /><label for="star4"></label>
+															<input type="radio" id="star3" name="rating" value="3" /><label for="star3"></label>
+															<input type="radio" id="star2" name="rating" value="2" /><label for="star2"></label>
+															<input type="radio" id="star1" name="rating" value="1" /><label for="star1"></label>
+														</div>
+													</div>
+												</div>
+												<button type="submit" class="primary-btn">Submit</button>
+											</form>
+
+
+										</div>
+									</div>
+
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+
+
+
+
+
+
+
+
+				</div>
+				<!-- /Product Details -->
+			</div>
+		<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+
+
+
+
+
+
+
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- section title -->
+				<div class="col-md-12">
+					<div class="section-title">
+						<h2 class="title">Picked For You</h2>
+					</div>
+				</div>
+				<!-- section title -->
+
+				<!-- Product Single -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="product product-single">
+						<div class="product-thumb">
+							<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+							<img src="{% static './img/product04.jpg' %}" alt="">
+						</div>
+						<div class="product-body">
+							<h3 class="product-price">$32.50</h3>
+							<div class="product-rating">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star-o empty"></i>
+							</div>
+							<h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
+							<div class="product-btns">
+								<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+									<button class="primary-btn">ChecDetails</button>
+								<button class="main-btn icon-btn"><i class="fa fa-shopping-cart"></i></button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Product Single -->
+
+				<!-- Product Single -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="product product-single">
+						<div class="product-thumb">
+							<div class="product-label">
+								<span>New</span>
+							</div>
+							<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+							<img src="{% static './img/product03.jpg' %}" alt="">
+						</div>
+						<div class="product-body">
+							<h3 class="product-price">$32.50</h3>
+							<div class="product-rating">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star-o empty"></i>
+							</div>
+							<h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
+							<div class="product-btns">
+								<div class="product-btns">
+									<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+										<button class="primary-btn">ChecDetails</button>
+									<button class="main-btn icon-btn"><i class="fa fa-shopping-cart"></i></button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Product Single -->
+
+				<!-- Product Single -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="product product-single">
+						<div class="product-thumb">
+							<div class="product-label">
+								<span class="sale">-20%</span>
+							</div>
+							<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+							<img src="{% static './img/product02.jpg' %}" alt="">
+						</div>
+						<div class="product-body">
+							<h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
+							<div class="product-rating">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star-o empty"></i>
+							</div>
+							<h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
+
+								<div class="product-btns">
+									<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+										<button class="primary-btn">ChecDetails</button>
+									<button class="main-btn icon-btn"><i class="fa fa-shopping-cart"></i></button>
+								</div>
+
+						</div>
+					</div>
+				</div>
+				<!-- /Product Single -->
+
+				<!-- Product Single -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="product product-single">
+						<div class="product-thumb">
+							<div class="product-label">
+								<span>New</span>
+								<span class="sale">-20%</span>
+							</div>
+							<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+							<img src="{% static './img/product01.jpg' %}" alt="">
+						</div>
+						<div class="product-body">
+							<h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
+							<div class="product-rating">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star-o empty"></i>
+							</div>
+							<h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
+							<div class="product-btns">
+								<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+									<button class="primary-btn">ChecDetails</button>
+								<button class="main-btn icon-btn"><i class="fa fa-shopping-cart"></i></button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Product Single -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+
+				<!-- Modal -->
+				<div id="myModal" class="modal fade container" role="dialog">
+				<div class="modal-dialog-lg">
+
+					<!-- Modal content-->
+					<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title text-center">CONTACT SELLER</h4>
+					</div>
+					<div class="modal-body">
+						<div class="panel panel-success">
+							<div class="panel-heading text-center">Seller profile</div>
+							<div class="panel-body container">
+
+									<div class="col-md-2">
+									<p>Sponsored</p>
+									</div>
+									<div class="col-md-7">
+									<!--messege-->
+									<p class="text-center"> Create Message</p>
+								   <div class="col-md-12 col-lg-12 mb-5">
+
+									<form action="{% url 'message' %}" method="POST"  class="p-5 bg-white border">
+										{% csrf_token %}
+
+									<input type="text" name="receiver" value="{{object.username}}" class="sr-only" readonly>
+									<div class="row form-group">
+										<div class="col-md-12 mb-3 mb-md-0">
+											<label class="font-weight-bold" for="fullname">Subject</label>
+										<input type="text" name="subject" class="form-control" placeholder="Enter Message Sebject" required>
+										</div>
+									</div>
+
+									 <div class="row form-group">
+										<div class="col-md-12">
+										<label class="font-weight-bold" for="message">Message</label>
+										<textarea name="texting" id="texting" cols="10" rows="5" class="form-control" placeholder="Enter Your Message" required></textarea>
+										</div>
+									</div>
+
+									{% if object.username == request.user %}
+									<a href="#" class="btn btn-danger btn-sm" >No, You Can't</a>
+									{% else %}
+									<button type="submit" class="btn btn-success">Send Message</button>
+									{% endif %}
+									</form>
+									</div>
+									<!--/messege-->
+									</div>
+
+						  <div class="col-md-3">
+								<p class="text-center"> Seller Profile </p>
+							<!--profile-->
+							<div class="profile-sidebar">
+								<div class="profile-userpic">
+									<img src="{{object.username.client.avater.url}}" class="img-responsive rounded-circle" >
+								</div>
+								<div class="profile-usertitle">
+									<div class="profile-usertitle-name">
+											{{object.username.first_name|title}} {{object.username.last_name|title}}
+									</div>
+									<div class="profile-usertitle-job">
+									{% if object.username.client.professional == True %}
+										<a href="{% url 'shop' object.username %}" class="btn btn-success btn-sm" style="background-color: #f89d13; border-color: #f89d13;">Visit Store </a>
+									{% else %}
+									  Rgular
+									{% endif %}
+
+									</div>
+
+									<div class="profile-usertitle-job">
+											<p>region : {{object.username.client.region}}</p>
+											<p>Phone : {{object.username.client.phone}} </p>
+									</div>
+								</div>
+							</div>
+							<!--profile-->
+  						   		</div>
+							</div>
+			 		    </div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+					</div>
+
+				</div>
+				</div>
+
+	{% endblock %}

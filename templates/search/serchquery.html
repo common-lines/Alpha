@@ -1,0 +1,41 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} Subscription Page {% endblock %}
+
+{% load static %}
+
+{% block body %} 
+
+{% include 'core/navigation.html' %}
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Subscription</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+  
+
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+            <p>You Seach Four <b>{{query|title}}</b> in <b>{{category|title}} </b></p>
+
+
+            <!-- /row -->
+     		</div>
+       	<!-- /row -->
+		</div>
+				<!-- /container -->
+	</div>
+	<!-- /section -->
+	{% endblock %}

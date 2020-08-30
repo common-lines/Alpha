@@ -1,0 +1,99 @@
+{% extends 'core/base.html' %}
+
+{% block title %} Subscription Page {% endblock %}
+
+{% load static %}
+
+{% block body %} 
+
+{% include 'core/navigation.html' %}
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Subscription</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+			<div class="col-md-2">Ads</div>
+			<div id="main" class="col-md-8">
+					{% for message in  messages %}
+					<div class="alert alert-success text-center">
+					{{message}}
+					</div>
+					{% endfor %}
+					<p class="block-title text-center">
+						My Shopping Cart
+					</p>
+					<!-- MAIN -->
+					<!-- STORE -->
+					<div id="store">
+						<!-- row -->
+						<div class="row">
+  					 {% for x in produc %}
+						<!-- Product Single style="width: 216px;  height: 250px;"-->
+							<div class="col-md-4 col-sm-6 col-xs-6">
+								<div class="product product-single">
+									<div class="product-thumb"> 
+									<div class="product-label">
+									  		{% if x.product.kind == "new" %}
+											<span>{{x.product.kind}}</span>
+											{% else %}
+											<span class="sale">{{x.product.kind}}</span>
+											{% endif %}
+									</div>
+									<a href="{% url 'catdelte' x.product.slug %}" class="main-btn quick-view"><i class="fa fa-trello"></i> erase</a>
+										<img src="{{x.product.image.url}}" alt="" style="width: {% widthratio 216px 200 100 as width %};  height: 250px;" >
+									</div>
+									<div class="product-body">
+										<h3 class="product-price">${{x.product.price}}</h3>
+										<div class="product-rating">
+											<p cLass="text-uppercase" style="color : #f89d13"><b>{{x.product.location}}</b></p>
+										</div>
+										<hr class="hr">
+										<h3 class="product-name text-center"><a href="{{x.product.get_absolute_url}}">{{x.product.title|title}}</a></h3>
+									</div>
+								</div>
+							</div>
+							{% if forloop.counter == 2 %}
+							<div class="clearfix visible-sm visible-xs"></div>
+							{% elif forloop.counter == 3  %}
+							<div class="clearfix visible-md visible-lg"></div>
+							{% elif forloop.counter == 4  %}
+							<div class="clearfix visible-sm visible-xs"></div>
+							{% elif forloop.counter == 6  %}
+							<div class="clearfix visible-md visible-lg visible-sm visible-xs"></div>
+							{% elif forloop.counter == 8  %}
+							<div class="clearfix visible-sm visible-xs"></div>
+							{% endif %}	
+		              {% endfor %}
+					  
+						</div>
+				 </div>
+					<!-- /STORE -->
+					<!-- store bottom filter -->
+					<div class="store-filter clearfix">
+						<div class="pull-right">
+							{% include 'include/paginated.html' with page=produc %}
+						</div>
+					</div>
+					<!-- /store bottom filter -->
+				</div>
+				<!-- /MAIN -->
+				
+			<div class="col-md-2">Ads</div>
+     		</div>
+       	<!-- /row -->
+		</div>
+	</div>
+	<!-- /section -->
+	{% endblock %}

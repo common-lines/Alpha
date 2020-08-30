@@ -1,0 +1,82 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} Blank Page {% endblock %}
+
+{% load static %}
+
+{% block body %} 
+
+{% include 'core/navigation.html' %}
+    
+
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Blank</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+			<div class="col-md-3">Ads</div>
+			<div class="col-md-6">
+			  <h2 class="text-center alert-link">Chat Room Created !!</h2>
+            {% for message in  messages %}
+	            <div class="alert alert-danger text-center">
+				  <b class="text-center">Error !. </b>
+	              {{message}}
+	            </div>
+			{% endfor %}
+
+
+			  <div class="alert alert-info text-center">
+				  <b class="text-center">Chat Details Founnded</b>
+	         </div>
+
+
+			 	  <table class="table table-bordered">
+                 <thead> 
+                 <tr> 
+                 <th class="text-center text-uppercase">Data</th> 
+                 <th class="text-center text-uppercase">Current</th> 
+                 </tr> 
+                 </thead> 
+                 <tbody> 
+                 <tr> 
+						<td><b>Receiver</b></td>
+						<td><b>{{receiver.first_name|capfirst}} </b></td>
+                 </tr> 
+                   <tr> 
+						<td><b>Sender</b></td>
+						<td><b>{{sender.first_name|capfirst}} </b></td>
+                    </tr> 
+
+					  <tr> 
+						<td><b>subject</b></td>
+						<td>{{subject|title}}</td>
+                    </tr> 
+                    
+       
+                    </tbody>
+              </table>
+
+					
+			  <p class="btn-success text-center"><a href="{% url 'profile' %}" style="color : #fff">Click To View Your Inbox </a></p>
+
+	 	</div>
+	 		<div class="col-md-3">Ads</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+	{% endblock %}

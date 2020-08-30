@@ -1,0 +1,345 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} Blank Page {% endblock %}
+
+{% load static %}
+
+{% block body %}
+
+{% include 'core/navigation.html' %}
+
+
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Blank</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+               <!--Settings-->
+                <div class="col-md-2">
+
+
+       <div class="profile-sidebar">
+          <div class="profile-userpic">
+              <img src="{{user.client.avater.url}}" class="img-responsive rounded-circle" style="width: 150px; height: 150px;" alt="">
+        </div>
+      <div class="profile-usertitle">
+        <div class="profile-usertitle-name">
+           {{request.user.first_name|title}} {{request.user.last_name|title}}
+         </div>
+       <div class="profile-usertitle-job">
+             {{user.client.institute}}
+       </div>
+     </div>
+
+    <div class="profile-usermenu">
+      <ul class="nav">
+        <li>
+          <a href="{% url 'profile' %}">
+          <i class="fa fa-anchor"></i>
+          Account </a>
+        </li>
+        <li>
+          <a href="{% url 'wallet' %}">
+          <i class="fa fa-snowflake-o"></i>
+          Wallet </a>
+        </li>
+        <li class="active">
+          <a href="#">
+          <i class="fa fa-reorder"></i>
+           Listing </a>
+        </li>
+        <li>
+          <a href="{% url 'demand' %}">
+          <i class="fa fa-archive"></i>
+           Request </a>
+        </li>
+        <li>
+          <a href="{% url 'orders' %}"><!--target="_blank"-->
+          <i class="fa fa-shopping-basket"></i>
+         Orders</a>
+        </li>
+        <li>
+         <a href="{% url 'shop' request.user %}">
+          <i class="fa fa-shopping-bag"></i>
+          Shop</a>
+        </li>
+        <li>
+          <a href="{% url 'contact' %}">
+          <i class="fa fa-book"></i>
+          Contacts</a>
+        </li>
+          <li>
+          <a href="{% url 'settings' %}">
+          <i class="fa fa-wrench"></i>
+          Settings </a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    </div>
+        <div class="col-md-8">
+          <p class="block-title text-center">
+            Create Listing
+          </p>
+              <!-- STORE -->
+            <div id="store">
+              <!-- row -->
+              <div class="row">
+
+                  	<!-- home wrap -->
+			<div class="home-wrap">
+				<!-- home slick -->
+				<div id="home-slick">
+					<!-- banner -->
+					<div class="banner banner-1">
+						        <!--Code-->
+                     <div class="col-md-4">
+                        <div class="card  shadow panel-heading text-center product product-single">
+                            <kbd class="text-uppercase march">Loan & Lending</kbd>
+                            <div class="card-body">
+                                <h5>Honda City 2016</h5>
+                                <small>New Delhi</small>,
+                                <small>Reference No.</small>,
+                                <small>Kotak Mahindra Bank</small>
+                            </div>
+                            <div class="card-footer lower-backgroung">
+                                <button type="button" class="btn btn-sm btn-outline-success pakege-update">Activate</button>
+                                <a href="{% url 'loancreate' %}" class="btn btn-sm btn-outline-primary pakege-listing">Listing</a>
+                             </div>
+                        </div>
+                    </div>
+                  <!--/ends-->
+                   <!--Code-->
+                     <div class="col-md-4">
+                        <div class="card  shadow panel-heading text-center product product-single">
+                            <kbd class="text-uppercase march">Hostels</kbd>
+                            <div class="card-body">
+                                <h5>Honda City 2016</h5>
+                                <small>New Delhi</small>,
+                                <small>Reference No.</small>,
+                                <small>Kotak Mahindra Bank</small>
+                            </div>
+                            <div class="card-footer lower-backgroung">
+                                <button type="button" class="btn btn-sm btn-outline-success pakege-update">Activate</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary pakege-listing">Listing</button>
+                            </div>
+                        </div>
+                    </div>
+                     <!--/ends-->
+                      <div class="clearfix visible-sm visible-xs"></div>
+                     <!--Code-->
+                     <div class="col-md-4">
+                        <div class="card  shadow panel-heading text-center product product-single">
+                            <kbd class="text-uppercase march">T-Shirt Printing</kbd>
+                            <div class="card-body">
+                                <h5>Honda City 2016</h5>
+                                <small>New Delhi</small>,
+                                <small>Reference No.</small>,
+                                <small>Kotak Mahindra Bank</small>
+                            </div>
+                            <div class="card-footer lower-backgroung">
+                                <button type="button" class="btn btn-sm btn-outline-success pakege-update">Activate</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary pakege-listing">Listing</button>
+                            </div>
+                        </div>
+                    </div>
+                   <!--/ends-->
+                     <div class="clearfix visible-md visible-lg"></div>
+                    <!--Code-->
+                     <div class="col-md-4">
+                        <div class="card  shadow panel-heading text-center product product-single">
+                            <kbd class="text-uppercase march">Virtual Library</kbd>
+                            <div class="card-body">
+                                <h5>Honda City 2016</h5>
+                                <small>New Delhi</small>,
+                                <small>Reference No.</small>,
+                                <small>Kotak Mahindra Bank</small>
+                            </div>
+                            <div class="card-footer lower-backgroung">
+                                <button type="button" class="btn btn-sm btn-outline-success pakege-update">Activate</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary pakege-listing">Listing</button>
+                            </div>
+                        </div>
+                    </div>
+                  <!--/ends-->
+                    <div class="clearfix visible-sm visible-xs"></div>
+                  <!--Code-->
+                     <div class="col-md-4">
+                        <div class="card  shadow panel-heading text-center product product-single">
+                            <kbd class="text-uppercase march">Photograph</kbd>
+                            <div class="card-body">
+                                <h5>Honda City 2016</h5>
+                                <small>New Delhi</small>,
+                                <small>Reference No.</small>,
+                                <small>Kotak Mahindra Bank</small>
+                            </div>
+                            <div class="card-footer lower-backgroung">
+                                <button type="button" class="btn btn-sm btn-outline-success pakege-update">Activate</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary pakege-listing">Listing</button>
+                            </div>
+                        </div>
+                    </div>
+                  <!--/ends-->
+                   <!--Code-->
+                     <div class="col-md-4">
+                        <div class="card  shadow panel-heading text-center product product-single">
+                            <kbd class="text-uppercase march">Ticketing</kbd>
+                            <div class="card-body">
+                                <h5>Honda City 2016</h5>
+                                <small>New Delhi</small>,
+                                <small>Reference No.</small>,
+                                <small>Kotak Mahindra Bank</small>
+                            </div>
+                            <div class="card-footer lower-backgroung">
+                                <button type="button" class="btn btn-sm btn-outline-success pakege-update">Activate</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary pakege-listing">Listing</button>
+                            </div>
+                        </div>
+                    </div>
+                  <!--/ends-->
+              <div class="clearfix visible-md visible-lg visible-sm visible-xs"></div>
+					</div>
+					<!-- /banner -->
+
+
+					<!-- banner -->
+					<div class="banner banner-1">
+						        <!--Code-->
+                     <div class="col-md-4">
+                        <div class="card  shadow panel-heading text-center product product-single">
+                            <kbd class="text-uppercase march">Bundles</kbd>
+                            <div class="card-body">
+                                <h5>Honda City 2016</h5>
+                                <small>New Delhi</small>,
+                                <small>Reference No.</small>,
+                                <small>Kotak Mahindra Bank</small>
+                            </div>
+                            <div class="card-footer lower-backgroung">
+                                <button type="button" class="btn btn-sm btn-outline-success pakege-update">Activate</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary pakege-listing">Listing</button>
+                            </div>
+                        </div>
+                    </div>
+                  <!--/ends-->
+                   <!--Code-->
+                     <div class="col-md-4">
+                        <div class="card  shadow panel-heading text-center product product-single">
+                            <kbd class="text-uppercase march">Services</kbd>
+                            <div class="card-body">
+                                <h5>Honda City 2016</h5>
+                                <small>New Delhi</small>,
+                                <small>Reference No.</small>,
+                                <small>Kotak Mahindra Bank</small>
+                            </div>
+                            <div class="card-footer lower-backgroung">
+                                <button type="button" class="btn btn-sm btn-outline-success pakege-update">Activate</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary pakege-listing">Listing</button>
+                            </div>
+                        </div>
+                    </div>
+                     <!--/ends-->
+                      <div class="clearfix visible-sm visible-xs"></div>
+                     <!--Code-->
+                     <div class="col-md-4">
+                        <div class="card  shadow panel-heading text-center product product-single">
+                            <kbd class="text-uppercase march">Movies & Games</kbd>
+                            <div class="card-body">
+                                <h5>Honda City 2016</h5>
+                                <small>New Delhi</small>,
+                                <small>Reference No.</small>,
+                                <small>Kotak Mahindra Bank</small>
+                            </div>
+                            <div class="card-footer lower-backgroung">
+                                <button type="button" class="btn btn-sm btn-outline-success pakege-update">Activate</button>
+                                <a href="{% url 'moviesin' %}" class="btn btn-sm btn-outline-primary pakege-listing">Listing</a>
+                            </div>
+                        </div>
+                    </div>
+                   <!--/ends-->
+                     <div class="clearfix visible-md visible-lg"></div>
+                    <!--Code-->
+                     <div class="col-md-4">
+                        <div class="card  shadow panel-heading text-center product product-single">
+                            <kbd class="text-uppercase march">Cinema</kbd>
+                            <div class="card-body">
+                                <h5>Honda City 2016</h5>
+                                <small>New Delhi</small>,
+                                <small>Reference No.</small>,
+                                <small>Kotak Mahindra Bank</small>
+                            </div>
+                            <div class="card-footer lower-backgroung">
+                                <button type="button" class="btn btn-sm btn-outline-success pakege-update">Activate</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary pakege-listing">Listing</button>
+                            </div>
+                        </div>
+                    </div>
+                  <!--/ends-->
+                    <div class="clearfix visible-sm visible-xs"></div>
+                  <!--Code-->
+                     <div class="col-md-4">
+                        <div class="card  shadow panel-heading text-center product product-single">
+                            <kbd class="text-uppercase march">Software</kbd>
+                            <div class="card-body">
+                                <h5>Honda City 2016</h5>
+                                <small>New Delhi</small>,
+                                <small>Reference No.</small>,
+                                <small>Kotak Mahindra Bank</small>
+                            </div>
+                            <div class="card-footer lower-backgroung">
+                                <button type="button" class="btn btn-sm btn-outline-success pakege-update">Activate</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary pakege-listing">Listing</button>
+                            </div>
+                        </div>
+                    </div>
+                  <!--/ends-->
+                   <!--Code-->
+                     <div class="col-md-4">
+                        <div class="card  shadow panel-heading text-center product product-single">
+                            <kbd class="text-uppercase march">Stories</kbd>
+                            <div class="card-body">
+                                <h5>Honda City 2016</h5>
+                                <small>New Delhi</small>,
+                                <small>Reference No.</small>,
+                                <small>Kotak Mahindra Bank</small>
+                            </div>
+                            <div class="card-footer lower-backgroung">
+                                <button type="button" class="btn btn-sm btn-outline-success pakege-update">Activate</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary pakege-listing">Listing</button>
+                            </div>
+                        </div>
+                    </div>
+                  <!--/ends-->
+              <div class="clearfix visible-md visible-lg visible-sm visible-xs"></div>
+					</div>
+					<!-- /banner -->
+				</div>
+				<!-- /home slick -->
+			</div>
+			<!-- /home wrap -->
+                <!--/code-->
+              </div>
+            </div>
+        </div>
+        <div class="dcol-md-2">
+              AID
+         </div>
+        <!--setinds end-->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+{% endblock %}

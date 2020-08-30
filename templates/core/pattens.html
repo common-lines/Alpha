@@ -1,0 +1,117 @@
+{% extends 'core/base.html' %}
+
+{% block title %} Blank Page {% endblock %}
+
+{% load static %}
+
+{% block body %} 
+
+{% include 'core/navigation.html' %}
+    
+
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Blank</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+
+            <div class="col-md-2">
+			 	<p>Sponsored</p>
+			</div>
+
+            <div class="col-md-8">
+			{% for message in  messages %}
+	            <div class="alert alert-danger text-center">
+	              {{message}}
+	            </div>
+				{% endfor %}
+            <form  method="POST"  class="p-5 bg-white border">
+
+				{% csrf_token %}
+
+                <table class="table table-bordered">
+                 <P class="text-center h4 text-uppercase">set product Specification</P>
+                 <thead> 
+                 <tr> 
+                 <th class="text-center text-uppercase">Feature</th> 
+                 <th class="text-center text-uppercase">Detail</th> 
+                 </tr> 
+                 </thead> 
+                 <tbody> 
+                 <tr> 
+                 <td> {{form.tab1}} </td>
+            
+                  <td>{{form.det1}} </td>
+                   </tr> 
+                   <tr> 
+                   <td>{{form.tab2}} </td> 
+
+                   <td>{{form.det2}} </td>
+                    </tr> 
+                    <tr> 
+                    <td>{{form.tab3}} </td> 
+
+                    <td>{{form.det3}}</td> 
+                    </tr> 
+                    <tr> 
+                    <td>{{form.tab4}} </td> 
+
+                    <td>{{form.det4}} </td> 
+                    </tr> 
+                    <tr> 
+                    <td>{{form.tab5}} </td> 
+
+                    <td>{{form.det5}}</td> 
+                    </tr> 
+                    </tbody>
+              </table>
+
+                    
+                    
+                     
+                    
+                    
+
+               
+
+            <button type="submit" class="btn btn-success">Continue <i class="fa fa-arrow-circle-right"></i></button>
+	        </form>
+
+				</div>
+            	<div class="col-md-2">
+			 	<p>Sponsored</p>
+				</div>
+
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+    	 	<script>
+		//Query All input fields
+		var fields = document.getElementsByTagName('input')
+		fields[1].className += '';
+		fields[2].className += 'form-control';
+		fields[3].className += 'form-control';
+		fields[4].className += 'form-control';
+     	fields[5].className += 'form-control';
+     	fields[6].className += 'form-control';
+        fields[7].className += 'form-control';
+		fields[8].className += 'form-control';
+        fields[9].className += 'form-control';
+        fields[10].className += 'form-control';
+        fields[11].className += 'form-control';
+	</script>
+{% endblock %}

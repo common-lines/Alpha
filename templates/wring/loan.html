@@ -1,0 +1,104 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} Subscription Page {% endblock %}
+
+{% load static %}
+
+{% block body %} 
+
+{% include 'core/navigation.html' %}
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Subscription</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+
+     
+					<!-- store top filter -->
+					<div class="store-filter clearfix">
+						<div class="pull-right">
+							<div class="row-filter">
+								<a href="#" class="active"><i class="fa fa-th-large"></i></a>
+								<a href="#"><i class="fa fa-bars"></i></a>
+							</div>
+						</div>
+					</div>
+					<!-- /store top filter -->
+          <hr class="hr">
+
+
+		<div class="col-md-12">
+        {% for x in page %}   
+
+         	 <div class="col-md-6 col-lg-4 mb-4">
+            <a href="{% url 'loanbase' x.slug %}" class="prop-entry d-block">
+              <figure class="banner banner-2">
+                <img src="{{x.image.url}}" alt="Image" class="img-fluid-setting">
+              </figure>
+              <div class="prop-text">
+                <div class="inner">
+                  <span class="price rounded">MIN : {{x.minmun}}</span>
+                  <span class="price rounded">MAX: {{x.maxmum}}</span>
+                  <h3 class="title">by: {{x.title}}</h3>
+                  <p class="location"><span class="title">Collateral:</span> {{x.collateral}}</p>
+                </div>
+                <div class="prop-more-info">
+                  <div class="inner d-flex">
+                    <div class="col">
+                      <span>Duration:</span>
+                      <strong class="span">{{x.duration}}</strong>
+                    </div>
+                    <div class="col">
+                      <span>Monthly:</span>
+                      <strong class="span">{{x.monthly}}</strong>
+                    </div>
+                    <div class="col">
+                      <span>2 weeks:</span>
+                     <strong class="span">{{x.weeksii}}</strong>
+                    </div>
+                    <div class="col">
+                      <span>Weeky R:</span>
+                      <strong class="span">{{x.weeklyr}}</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          {% endfor %}
+			</div>
+
+          		<!-- store bottom filter -->
+					<div class="store-filter clearfix">
+						<div class="pull-right text-center">
+						<hr class="hr">
+						{% include 'include/paginated.html' with page=page %}
+						</div>
+					</div>
+					<!-- /store bottom filter -->
+
+      <!-- /row -->
+     		</div>
+       	<!-- /row -->
+		</div>
+				<!-- /container -->
+	</div>
+	<!-- /section -->
+	{% endblock %}
+
+

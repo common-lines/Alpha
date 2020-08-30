@@ -1,0 +1,9 @@
+<ul class="store-pages">
+    {% if page.has_previous %}
+	<li><a href="?page={{page.previous_page_number}}"><i class="fa fa-caret-left"></i></a></li>
+    {% endif %}
+	<li><a href="#">Page {{page.number}} Of {{page.paginator.num_pages}}</a></li>
+    {% if page.has_next %}
+	<li><a href="?page={{page.next_page_number}}"><i class="fa fa-caret-right"></i></a></li>
+    {% endif %}
+</ul>

@@ -1,0 +1,383 @@
+{% extends 'core/base.html' %}
+
+{% block title %} Subscription Page {% endblock %}
+
+{% load static %}
+
+{% block body %} 
+
+{% include 'core/navigation.html' %}
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Order ID</a></li>
+				<li class="active">{{object.marked}}</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+         <!--row-->
+            <div class="row">
+            <!--  Product Details -->
+			<div class="product product-details clearfix">
+            <!--Col-m6-->
+             <div class="col-md-6">
+						<div id="product-main-view">
+							<div class="product-view">
+								<img src="{{object.product.image.url}}" alt="">
+							</div>
+							<div class="product-view">
+								<img src="{{object.product.vision.image1.url}}" alt="">
+							</div>
+							<div class="product-view">
+								<img src="{{object.product.vision.image2.url}}" alt="">
+							</div>
+							<div class="product-view">
+								<img src=" {{object.product.vision.image3.url}}" alt="">
+							</div>
+							<div class="product-view">
+								<img src=" {{object.product.vision.image4.url}}" alt="">
+							</div>
+							<div class="product-view">
+								<img src=" {{object.product.vision.image5.url}}" alt="">
+							</div>
+						</div>
+						<div id="product-view">
+							<div class="product-view">
+								<img src="{{object.product.image.url}}" alt="">
+							</div>
+							<div class="product-view">
+								<img src="{{object.product.vision.image1.url}}" alt="">
+							</div>
+							<div class="product-view">
+								<img src="{{object.product.vision.image2.url}}" alt="">
+							</div>
+							<div class="product-view">
+								<img src=" {{object.product.vision.image3.url}}" alt="">
+							</div>
+							<div class="product-view">
+								<img src=" {{object.product.vision.image4.url}}" alt="">
+							</div>
+							<div class="product-view">
+								<img src=" {{object.product.vision.image5.url}}" alt="">
+							</div>
+						</div>
+					</div>
+            <!--col-->
+             <div class="col-md-6">
+             <div class="product-body">
+                <div class="product-label">
+                    <h2 class="product-name">{{object.product.title|title}}</h2>
+                </div>
+                <p style="color: #28a745; font-weight: bold;"><strong>Availability: </strong>{{object.product.availability}} </p>
+				<h3 class="product-price">${{object.product.price}} <del class="product-old-price">${{object.product.price_cancel}} </del></h3>
+                <div class="product_details_text">
+				<p>{{object.product.sample|title}}</p>
+				</div>
+             </div>
+              <div class="panel panel-success">
+			  	{% if object.seller == request.user %}
+				   <p class="panel-heading text-center text-uppercase">Send Message To Buyer</p>
+				  {% else %}
+					<p class="panel-heading text-center text-uppercase">Send Message To Seller</p>
+				{% endif %}
+            	<form action="{% url 'message' %}" method="POST"  class="p-5 bg-white border container-fluid">
+					{% csrf_token %}
+						{% if object.seller == request.user %}
+						<input type="text" name="receiver" value="{{object.buyer}}" class="sr-only" readonly>	
+							<div class="row form-group">
+				  				<div class="col-md-12 mb-3 mb-md-0">
+								<label class="font-weight-bold h4" for="fullname">Subject</label>
+							<input type="text" name="subject" class="form-control" placeholder="Enter Message Sebject" required>
+						   </div>
+						</div>
+						{% else %}
+						<input type="text" name="receiver" value="{{object.seller}}" class="sr-only" readonly>	
+							<div class="row form-group">
+				  				<div class="col-md-12 mb-3 mb-md-0">
+								<label class="font-weight-bold h4" for="fullname">Subject</label>
+							<input type="text" name="subject" class="form-control" placeholder="Enter Message Sebject" required>
+						   </div>
+						</div>
+						{% endif %}
+									 <div class="row form-group">
+										<div class="col-md-12">
+										<label class="font-weight-bold h4" for="message">Message</label>
+										<textarea name="texting" id="texting" cols="10" rows="5" class="form-control" placeholder="Enter Your Message" required></textarea>
+										</div>
+									</div>
+							<button type="submit" class="btn btn-success">Send Message</button>
+						</form>
+                        <br>
+                    <div class="panel-footer text-center">Click Tittle To Open Chat Room</div>
+                </div>
+             </div>
+			 <!--  Product Details -->
+			 <div class="col-md-12">
+			 <div class="col-md-6">
+
+			 <div class="panel  panel-success">
+                <div class="panel-heading text-center text-uppercase">Order condition</div>
+					 <div class="block-body  block-row  forum-static-data">
+                        <!--User Data-->
+                          <div class="static-data">
+						  <span class="static-title" style="color: #000;">{{object.size|upper }}</span>
+                          <span class="static-number" style="color: #28a745;">{{object.size01|title}}</span>
+                          </div>
+                          <!--User Data-->
+                          <div class="static-data">
+                          <span class="static-title" style="color: #000;">{{object.color|upper }}</span>
+                          <span class="static-number" style="color: #28a745;">{{object.size01|title}}</span>
+                          </div>
+                          <!--User Data-->
+                          <div class="static-data">
+						  <span class="static-title">QUANTITY</span>
+                          <span class="static-number" style="color: #28a745;">{{object.extent}}</span>
+                          </div>
+                      <!--User Data-->
+                      </div>
+				 </div>
+
+			  <div class="panel  panel-success">
+                <div class="panel-heading text-center text-uppercase">Order Alert </div>
+                  <div class="panel-body">
+                   <table class="table table-bordered">
+                 <thead> 
+                 <tr> 
+                 <th class="text-center text-uppercase">Details</th> 
+                 <th class="text-center text-uppercase">Amounts</th> 
+                 </tr> 
+                 </thead> 
+                 <tbody> 
+                 <tr> 
+                 <td><b>Quantity</b></td>
+                  <td>{{object.extent}}</td>
+                </tr> 
+                   <tr> 
+                   <td><b>Total Price</b></td> 
+
+                   <td>{{object.get_total}}</td>
+                    </tr> 
+					<tr> 
+                    <td><b>Order Accepted</b></td> 
+                    <td>{{object.accepted}}</td> 
+                    </tr>
+				 	{% if object.admin == False and object.payment  == False  %}
+                    <tr> 
+                    <td><b>Shipping</b></td> 
+                    <td>{{object.shipping}}</td> 
+                    </tr>
+				 	{% else %}
+				 	<tr>
+                    <td><b>Shipping</b></td>
+                    <td>True</td>
+                    </tr>
+				    {% endif %}
+					<tr> 
+                    <td><b>Shipping Cost</b></td> 
+
+                    <td>{{object.charge}}</td> 
+                    </tr> 
+					<tr> 
+                    <td><b>Shipping Id</b></td> 
+                    <td>{{object.reference}}</td>         
+                    </tr>
+                    <tr> 
+                    <td><b>Order Date</b></td> 
+                    <td>{{object.slot|timesince}}</td> 
+                    </tr> 
+                     
+                    </tbody>
+                    </table>
+                     </div>
+                </div> 
+				{% if object.seller == request.user %}
+				{% if object.accepted == False %}
+				<br>
+				<a href="{% url 'demandaccept' object.marked %}" class="btn btn-lg btn-block btn-success">Accept Order</a>
+				<hr>  <p class="text-center">OR</p><hr>
+				<a href="{% url 'requestdelete' object.marked %}" class="btn btn-lg btn-block btn-danger">Delete Request </a>
+				<br>
+				{% endif %}
+				{% elif object.buyer == request.user %}
+				{% if object.shipping == True %}
+				<a href="{% url 'orderdelete' object.marked %}" class="btn btn-lg btn-block btn-danger">Delete Order </a>
+				<br>
+				{% elif object.admin == True and object.payment  == True %}
+				<a href="{% url 'demandaccept' object.marked %}" class="btn btn-lg btn-block btn-success">Cancel & Refund Order</a>
+				{% else %}
+				<a href="{% url 'shipping' object.marked %}" class="btn btn-lg btn-block btn-warning">Shipping These Order </a>
+				<hr>  <p class="text-center">OR</p><hr>
+				<a href="{% url 'orderdelete' object.marked %}" class="btn btn-lg btn-block btn-danger">Delete Order </a>
+				<br>
+				{% endif %}
+				{% else %}
+				<a href="#" >Subscribe </a>
+				{% endif %}
+				<br>
+
+				{% if object.seller == request.user and object.admin == True and object.payment  == True %}
+				<div class="panel  panel-success">
+                <div class="panel-heading text-center text-uppercase">Nearby Fulfillment Center</div>
+				<div id='map' style='width: 100%; height: 300px;'></div>
+				</div>
+				{% for x in loacations %}
+				<div class="col-md-6">
+				<address>
+					<strong>{{x.center.title|title}}</strong><br>
+					{{x.center.poster}}<br>
+					<strong>Phone</strong><br>
+					<abbr title="Phone">P:</abbr> {{x.center.phone}}<br>
+					<abbr title="Phone">P:</abbr> {{x.center.phone2}}<br>
+					<strong>Email</strong><br>
+					<abbr>Email:</abbr> {{x.center.email}}<br>
+					<abbr>Email:</abbr> {{x.center.email2}}<br>
+					<strong>Opening Hours</strong><br>
+					<abbr>Mon - Fra:</abbr> {{x.center.oppening}}<br>
+					<abbr>Weekends:</abbr> {{x.center.weekend}}<br>
+				</address>
+				</div>
+				{% endfor %}
+				{% endif %}
+
+
+				{% if object.buyer == request.user and object.admin == True and object.payment  == True %}
+				<div class="panel  panel-success">
+                <div class="panel-heading text-center text-uppercase">Pickup Store</div>
+				<div id='map' style='width: 100%; height: 300px;'></div>
+				</div>
+				{% endif %}
+
+				
+			 </div>
+
+			  <div class="col-md-6">
+
+				
+			  <div class="panel  panel-success">
+                <div class="panel-heading text-center text-uppercase">Seller & buyer </div>
+                  <div class="panel-body">
+                   <table class="table table-bordered">
+                 <thead> 
+                 <tr> 
+                 <th class="text-center text-uppercase">Seller</th> 
+                 <th class="text-center text-uppercase">Buyer</th> 
+                 </tr> 
+                 </thead> 
+                 <tbody> 
+                 <tr> 
+                 <td><b>{{object.seller.first_name|title}} {{object.seller.last_name|title}}</b></td>
+                  <td><b>{{object.buyer.first_name|title}} {{object.buyer.last_name|title}}</b></td>
+                </tr> 
+                   <tr> 
+                   <td><b>{{object.seller.client.phone}}</b></td> 
+                   <td><b>{{object.buyer.client.phone}}</b></td>
+                    </tr> 
+                    <tr> 
+                    <td><b>{{object.seller.client.institute|capfirst}}</b></td> 
+                    <td><b>{{object.buyer.client.institute|capfirst}}</b></td> 
+                    </tr> 
+                    <tr> 
+                    <td>Username:<b>{{object.seller|capfirst}}</b></td> 
+                     <td>Username:<b>{{object.buyer|capfirst}}</b></td> 
+                    </tr> 
+                    </tbody>
+                    </table>
+					{% if object.seller.client.professional == True %}
+					<a href="{% url 'shop' object.seller %}" class="btn btn-success btn-sm" style="background-color: #f89d13; border-color: #f89d13;"> View Seller Store <i class="fa fa-arrow-circle-right"></i></a>
+					{% endif %}
+                     </div>
+			 </div>
+
+			 {% if object.admin == True and object.payment  == True %}
+			 	 <div class="panel  panel-success">
+                <div class="panel-heading text-center text-uppercase">Shipping Status</div>
+                  <div class="panel-body">
+                   <table class="table table-bordered">
+                 <thead> 
+                 <tr> 
+                 <th class="text-center text-uppercase">Order ID</th> 
+                 <th class="text-center text-uppercase">Status</th> 
+                 </tr> 
+                 </thead> 
+                 <tbody>
+	             <tr>
+                 <td><b>Payment To seller</b></td>
+                  <td>{{object.substitute.seller}}</td>
+                </tr> 
+                   <tr> 
+                   <td><b>Received Product From seller</b></td> 
+                   <td>{{object.substitute.received}}</td>
+                    </tr> 
+                    <tr> 
+                    <td><b>Order Refund</b></td> 
+                    <td>{{object.substitute.received}}</td> 
+                    </tr> 
+                    <tr> 
+                    <td><b>Order Delivary To Buyer</b></td> 
+                     <td>{{object.substitute.delivered}}</td> 
+                    </tr> 
+                    </tbody>
+                    </table>
+					<p class="text-center"><b>Note:</b> If Product Received from Seller, Buyer can't cancel order </p>
+					<div class="panel-footer text-center">Voxmart Inc.</div>
+				    </div>
+		    	 </div>
+			 {% endif %}
+
+			   <div class="panel  panel-success">
+                <div class="panel-heading text-center text-uppercase">Current Consavations</div>
+                  <div class="panel-body">
+				    {% for x in chats  %}
+					{% if x.sender == request.user  %}
+					<div class="containerchart darkerchart">
+					<img src="{{x.receiver.client.avater.url}}" alt="Avatar">
+					<p><a href="{% url 'contented' x.slug %}">{{x.title}}</a></p>
+					<span class="time-right-chart">To: {{x.receiver.first_name}}</span>
+					</div> 
+					{% else %}
+					<div class="containerchart darkerchart">
+					<img src="{{x.sender.client.avater.url}}" alt="Avatar">
+					<p><a href="{% url 'contented' x.slug %}">{{x.title}}</a></p>
+					<span class="time-right-chart">From: {{x.sender.first_name}}</span>
+					</div>
+					{% endif %}
+					{% endfor %}
+				 </div> 
+			 </div>
+		 </div>
+			 
+			 </div>
+            <!--  Product Details -->
+            </div>
+          <!-- /row -->
+     	    </div>
+       	<!-- /row -->
+		</div>
+	   <!-- /container -->
+	</div>
+	<!-- /section -->
+	<script>
+	L.mapbox.accessToken = '{{mapbox_access_token}}';
+	var map = L.mapbox.map('map')
+		.setView([-3.3499999, 37.3333282], 13)
+		.addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11')
+		);
+	map.scrollWheelZoom.disable();
+
+
+   
+
+
+	
+
+   </script>
+
+	{% endblock %}

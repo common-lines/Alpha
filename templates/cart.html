@@ -1,0 +1,56 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} Subscription Page {% endblock %}
+
+{% load static %}
+
+{% block body %} 
+
+{% include 'core/navigation.html' %}
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Subscription</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+
+
+			<div class="col-md-2">Ads</div>
+
+				<div class="col-md-8">
+				
+                {% for message in  messages %}
+	            <div class="alert alert-danger text-center">
+	              {{message}}
+	            </div>
+				{% endfor %}
+
+                <a href="{% url 'home' %}"  class="btn btn-lg btn-block btn-success">Return Home</a>
+
+				<!--cod-->
+				</div>
+
+
+			<div class="col-md-2">Ads</div>
+
+      
+     		</div>
+       	<!-- /row -->
+		</div>
+				<!-- /container -->
+	</div>
+	<!-- /section -->
+	{% endblock %}

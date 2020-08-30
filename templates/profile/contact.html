@@ -1,0 +1,158 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} Blank Page {% endblock %}
+
+{% load static %}
+
+{% block body %} 
+
+{% include 'core/navigation.html' %}
+    
+
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Blank</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+               <!--Settings-->
+                <div class="col-md-2">
+
+
+       <div class="profile-sidebar">
+          <div class="profile-userpic">
+              <img src="{{user.client.avater.url}}" class="img-responsive rounded-circle" style="width: 150px; height: 150px;" alt="">
+        </div>
+      <div class="profile-usertitle">
+        <div class="profile-usertitle-name">
+           {{request.user.first_name|title}} {{request.user.last_name|title}}
+         </div>
+       <div class="profile-usertitle-job">
+             {{user.client.institute}}
+       </div>
+     </div>
+
+    <div class="profile-usermenu">
+      <ul class="nav">
+        <li>
+          <a href="{% url 'profile' %}">
+          <i class="fa fa-anchor"></i>
+          Account </a>
+        </li>
+        <li>
+          <a href="{% url 'wallet' %}">
+          <i class="fa fa-snowflake-o"></i>
+          Wallet </a>
+        </li>
+        <li>
+          <a href="{% url 'squeeze' %}">
+          <i class="fa fa-reorder"></i>
+           Listing </a>
+        </li>
+        <li>
+          <a href="{% url 'demand' %}">
+          <i class="fa fa-archive"></i>
+           Request </a>
+        </li>
+        <li>
+          <a href="{% url 'orders' %}"><!--target="_blank"-->
+          <i class="fa fa-shopping-basket"></i>
+         Orders</a>
+        </li>
+        <li>
+         <a href="{% url 'shop' request.user %}">
+          <i class="fa fa-shopping-bag"></i>
+          Shop</a>
+        </li>
+        <li class="active">
+          <a href="#">
+          <i class="fa fa-book"></i>
+          Contacts</a>
+        </li>
+          <li >
+          <a href="{% url 'settings' %}">
+          <i class="fa fa-wrench"></i>
+          Settings </a>
+        </li>
+      </ul>
+    </div>
+    </div>
+
+    </div>
+            <div class="col-md-8">
+	               <p class="block-title text-center">
+                    My Contact's
+                  </p>
+                  		<!-- MAIN -->
+					<!-- STORE -->
+					<div id="store">
+						<!-- row -->
+						<div class="row">
+                <div class="row userMain">
+                {% for x in qs %}
+                    <!--My contact-->
+                <div class="col-md-4 col-sm-4">
+                    <div class="userBlock">
+                        <div class="backgrounImg">
+                            <img src="{{x.phone.store.banner.url}}">
+                        </div>
+                        <div class="userImg">
+                            <img src="{{x.phone.client.avater.url}}">
+                        </div>
+                        <div class="userDescription">
+                            <h5>{{x.phone.first_name|title}} {{x.phone.last_name|title}}</h5>
+                            <p>{{x.phone.client.region|capfirst}}, {{x.phone.client.country|upper}}</p>
+                             <div class="followrs">
+                                <a href="{% url 'erisecontact' x.phone %}">
+                                    <button class="btn_remove">Remove</button>
+                                </a>
+                                </div>
+                                    {% if x.phone.client.professional == True %}
+                                    <a href="{% url 'shop' x.phone %}">
+                                    <button class="btn_true">Store</button>
+                                    </a>
+                                    {% else %}
+                                    <a href="#">
+                                    <button class="btn_false">Disabled</button>
+                                    </a>
+                                     {% endif %}
+                          </div>
+                      </div>
+                  </div>
+                  <!-- My Contct-->
+                {% endfor %}
+                </div>
+             </div>
+            </div>
+              <!-- /STORE -->
+                <!-- store bottom filter -->
+                <div class="store-filter clearfix">
+                  <div class="pull-right">
+                    {% include 'include/paginated.html' with page=qs %}
+                  </div>
+                </div>
+                <!-- /store bottom filter -->
+            </div>
+            <div class="dcol-md-2">
+              AID
+            </div>
+
+               <!--setinds end-->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+	{% endblock %}

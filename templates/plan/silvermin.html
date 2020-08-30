@@ -1,0 +1,105 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} Subscription Page {% endblock %}
+
+{% load static %}
+
+{% block body %} 
+
+{% include 'core/navigation.html' %}
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Subscription</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+               <div class="col-md-2">Ads</div>
+
+                <div class="col-md-8">
+                       
+				{% for message in  messages %}
+	            <div class="alert alert-danger text-center">
+	              {{message}}
+	            </div>
+				{% endfor %}
+                 <h2 class="block-title text-center"> 
+                Silver Min Plan	
+                </h2>
+                <p class="text-center">Thank For Subscribe</p>
+                <br>
+             
+                    <!--Panell Start-->
+                <div class="panel panel-success">
+                    <div class="panel-heading text-center text-uppercase">Subscription Note</div>
+                    <div class="panel-body container">
+					<ol>
+					<li> 1. System Will Make Your Product Active</li>
+					<li> 2. System Will Reduce Your Listing Remain</li>
+					<li> 3. System Will Rederect To Listing Page</li>
+					</ol>
+					</div>
+			   </div>
+               <!--panel ends-->
+                    <ul class="nav nav-tabs nav-justified">
+                        <li class="active"><a data-toggle="tab" href="#tab1">Wallet</a></li>
+                        <li><a data-toggle="tab" href="#tab2">Vox-Pay</a></li>
+                    </ul>
+
+                 <div class="tab-content">
+                    <div id="tab1" class="tab-pane fade in active">
+                       <!---->
+                        <br>
+                    <form  method="POST"  class="p-5 bg-white border">
+        				{% csrf_token %}
+                        <p style="color: #fd7e14; font-size: 13px; font-weight: bold;">Vox <span style="color:black;"> - </span> <span style="color:blue;">Pay</span> <sub style="color: #000; font-size:10px" >power by</sub>  </p>
+                        <label class="font-weight-bold h4">Click "Yes" Pay With Wallets</label>
+                        <p class="alert alert-warning text-center">If Your Pay With Wallet, Pakege Plan Price Will Be dedected In Yout Wallet Balance, afte deduct pending withdraws</p>
+        	            <h2>Pay With Wallet</h2>
+                        <div class="inputGroup">
+                            <input id="radio1" name="radio1" type="radio"/>
+                            <label for="radio1">Yes</label>
+                        </div>
+                        <button type="submit" class="btn btn-success">Subscribe.</button>
+                    </form>
+                       <!---->
+                    </div>
+                    <div id="tab2" class="tab-pane fade in">
+                        <br>
+                     <form  method="POST"  class="p-5 bg-white border">
+			            	{% csrf_token %}
+                       <p style="color: #fd7e14; font-size: 13px; font-weight: bold;">Vox <span style="color:black;"> - </span> <span style="color:blue;">Pay</span> <sub style="color: #000; font-size:10px" >power by</sub>  </p>
+                        <label class="font-weight-bold h4">Enter Transaction ID</label>
+                        <div class="row form-group">
+                            <div class="col-md-12 mb-3 mb-md-0">
+                                <input type="text" name="transaction" class="form-control" placeholder="Enter Amount"  required>
+                                </div>
+                            </div>
+                              <button type="submit" class="btn btn-success">Subscribe.</button>
+                        </div>
+                     </form>
+                 </div>
+
+
+                        
+              </div>
+             <div class="col-md-2">Ads</div>
+     		</div>
+       	<!-- /row -->
+		</div>
+				<!-- /container -->
+	</div>
+	<!-- /section -->
+	{% endblock %}

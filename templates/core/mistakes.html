@@ -1,0 +1,121 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} Blank Page {% endblock %}
+
+{% load static %}
+
+{% block body %} 
+
+{% include 'core/navigation.html' %}
+    
+
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Blank</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+
+				<div class="col-md-3">
+			 	<p>Sponsored</p>
+				</div>
+			
+				<div class="col-md-6">
+				{% for message in  messages %}
+	            <div class="alert alert-danger text-center">
+	              {{message}}
+	            </div>
+				{% endfor %}
+
+					<P class="text-center h4 text-uppercase">set product images</P>
+	
+					<form  method="POST" action=""  enctype="multipart/form-data" class="p-5 bg-white border">
+						{% csrf_token %}
+
+
+						<div class="row form-group">
+							<div class="col-md-12 mb-3 mb-md-0">
+								<label class="font-weight-bold" for="fullname">Upload Image</label>
+								{{form.image1}}
+					    	</div>
+						</div>
+
+						<div class="row form-group">
+							<div class="col-md-12 mb-3 mb-md-0">
+								<label class="font-weight-bold" for="fullname">Upload Image</label>
+								{{form.image2}}
+					    	</div>
+						</div>
+
+						<div class="row form-group">
+							<div class="col-md-12 mb-3 mb-md-0">
+								<label class="font-weight-bold" for="fullname">Upload Image</label>
+								{{form.image3}}
+					    	</div>
+						</div>
+
+						<div class="row form-group">
+							<div class="col-md-12 mb-3 mb-md-0">
+								<label class="font-weight-bold" for="fullname">Upload Image</label>
+								{{form.image4}}
+					    	</div>
+						</div>
+
+						<div class="row form-group">
+							<div class="col-md-12 mb-3 mb-md-0">
+								<label class="font-weight-bold" for="fullname">Upload Image</label>
+								{{form.image5}}
+					    	</div>
+						</div>
+
+						<!--{{form}}-->
+						
+						
+
+						<button type="submit" class="btn btn-success">Continue <i class="fa fa-arrow-circle-right"></i></button>
+
+					</form>
+
+				</div>
+
+				<div class="col-md-3">
+					<p>Sponsored</p>
+				</div>
+
+
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+	<script>
+		//Query All input fields
+		var form_fields = document.getElementsByTagName('input')
+		form_fields[1].className = 'form-control';
+		form_fields[2].className = 'form-control';
+		form_fields[3].className = 'form-control';
+		form_fields[4].className = 'form-control';
+		form_fields[5].className = 'form-control';
+		form_fields[6].className = 'form-control';
+		form_fields[7].className = 'form-control';
+
+    
+    for (var field in form_fields){	
+			form_fields[field].placeholder +='These Filed requred';
+		}
+
+
+	</script>
+	{% endblock %}

@@ -1,0 +1,221 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} Checkout  {% endblock %}
+
+{% load static %}
+
+{% block body %} 
+
+{% include 'core/navigation.html' %}
+    
+
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Checkout</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			{% for message in  messages %}
+			<div class="alert alert-danger text-center">
+			{{message}}
+			</div>
+			{% endfor %}
+			<!-- row -->
+			<div class="row">
+				<form id="checkout-form" class="clearfix">
+					<div class="col-md-6">
+						<div class="billing-details">
+							<div class="section-title">
+								<h3 class="title">Billing Details</h3>
+							</div>
+
+							<div class="form-group">
+								<label class="sr-only" for="email">Email address</label> 
+								<input class="form-control" type="text" name="first-name" placeholder="First Name">
+							</div>
+							<div class="form-group">
+								<input class="form-control" type="text" name="last-name" placeholder="Last Name">
+							</div>
+							<div class="form-group">
+								<input class="form-control" type="email" name="email" placeholder="Email">
+							</div>
+							<div class="form-group">
+								<input class="form-control" type="text" name="address" placeholder="Address">
+							</div>
+							<div class="form-group">
+								<input class="form-control" type="text" name="city" placeholder="City">
+							</div>
+							<div class="form-group">
+								<input class="form-control" type="text" name="country" placeholder="Country">
+							</div>
+							<div class="form-group">
+								<input class="form-control" type="text" name="zip-code" placeholder="ZIP Code">
+							</div>
+							<div class="form-group">
+								<input class="form-control" type="tel" name="tel" placeholder="Telephone">
+							</div>
+
+							<div class="row form-group">
+	      					 <div class="col-md-12 mb-3 mb-md-0">
+	     					    <label class="font-weight-bold" for="fullname">Select Pick Up Location <span style="color : red; font-size: 16px;" >*</span> </label>
+							   <select class="input-list" name="category" class="custom-select form-control">
+							   <option value="{{user.client.institute}}">{{user.client.institute|capfirst}}</option>
+							    <option value="{{user.client.institute}}">...</option>
+								<option value="iaaarusha">Iaa - Arusha</option>
+								<option value="digtal">Mzumbe Main Cumpose</option>
+								
+							</select>
+							</div>
+						</div>
+
+						<div class="row form-group">
+	  						<div class="col-md-12 mb-3 mb-md-0">
+							<label class="font-weight-bold" for="fullname">Enter Order Notice </label>
+							<textarea name="description"   id="id_description" cols="30" rows="5" class="form-control" placeholder="Full Product Description" required></textarea>
+						</div>
+						</div>
+
+
+
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="shiping-methods">
+							<div class="section-title">
+								<h4 class="title">Shiping Methods</h4>
+							</div>
+							<div class="input-checkbox">
+								<input type="radio" name="shipping" id="shipping-1" checked>
+								<label for="shipping-1">Free Shiping -  $0.00</label>
+								<div class="caption">
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+										<p>
+								</div>
+							</div>
+							<div class="input-checkbox">
+								<input type="radio" name="shipping" id="shipping-2">
+								<label for="shipping-2">Standard - $4.00</label>
+								<div class="caption">
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+										<p>
+								</div>
+							</div>
+						</div>
+
+						<div class="payments-methods">
+							<div class="section-title">
+								<h4 class="title">Payments Methods</h4>
+							</div>
+							<div class="input-checkbox">
+								<input type="radio" name="payments" id="payments-1" checked>
+								<label for="payments-1">Direct Bank Transfer</label>
+								<div class="caption">
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+										<p>
+								</div>
+							</div>
+							<div class="input-checkbox">
+								<input type="radio" name="payments" id="payments-2">
+								<label for="payments-2">Cheque Payment</label>
+								<div class="caption">
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+										<p>
+								</div>
+							</div>
+							<div class="input-checkbox">
+								<input type="radio" name="payments" id="payments-3">
+								<label for="payments-3">Paypal System</label>
+								<div class="caption">
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+										<p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-12">
+
+						<div class="order-summary clearfix">
+							<div class="section-title">
+								<h3 class="title">Order Review</h3>
+							</div>
+							<table class="shopping-cart-table table">
+								<thead>
+									<tr>
+										<th>Product</th>
+										<th></th>
+										<th class="text-center">Price</th>
+										<th class="text-center">Quantity</th>
+										<th class="text-center">Total</th>
+										<th class="text-right">Remove</th>
+									</tr>
+								</thead>
+								<tbody>
+								{% for x in post %}
+									<tr>
+										<td class="thumb"><img src="{{x.product.image.url}}" alt="" class="rounded-circle"></td>
+										<td class="details">
+										<a href="{% url 'vieworder' x.marked %}" style="font-size: 18px;"><b>{{x.product.title|linebreaks|truncatechars:22|title}}</b></a>
+											<ul>
+												<li><span>{{x.size|title }}: {{ x.size01|title }}</span></li>
+												<li><span>{{x.color|title }}: {{x.color01|title}}</span></li>
+											</ul>
+										</td>
+										<td class="price text-center"><strong>${{x.product.price|floatformat:"1"}}</strong><br><del class="font-weak product-old-price"><small>${{x.product.price_cancel|floatformat:"1"}}</small></del></td>
+										<td class="qty text-center"><input class="input" type="number" value="{{x.extent }}" style="background: #DADADA;" readonly></td>
+										<td class="total text-center"><strong class="primary-color">{{x.get_total}}</strong></td>
+										<td class="text-right"><a href="{% url 'removeshiping' x.marked %}" class="main-btn icon-btn"><i class="fa fa-close"></i></a>
+									</tr>
+								{% endfor %}
+								</tbody>
+								<tfoot>
+									<tr>
+										<th class="empty" colspan="3"></th>
+										<th>SUBTOTAL</th>
+										<th colspan="2" class="sub-total">${{price}}</th>
+									</tr>
+									<tr>
+										<th class="empty" colspan="3"></th>
+										<th>SHIPING</th>
+										<th colspan="2" class="sub-total">${{shepping}}</th>
+									</tr>
+									<tr>
+										<th class="empty" colspan="3"></th>
+										<th>TOTAL QUANTITY</th>
+										<td colspan="2" class="sub-total">{{quatity}}</td>
+									</tr>
+									<tr>
+										<th class="empty" colspan="3"></th>
+										<th>TOTAL</th>
+										<th colspan="2" class="total">${{total_price_plus}}</th>
+									</tr>
+								</tfoot>
+							</table>
+							<div class="pull-right">
+								<a href="{% url 'orderprocess' %}" class="primary-btn payment_item">Process Order</a>
+							</div>
+						</div>	
+    					<hr class="hr">
+					</div>
+
+					</div>
+					
+				</form>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+	{% endblock %}

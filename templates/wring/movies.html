@@ -1,0 +1,77 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} Subscription Page {% endblock %}
+
+{% load static %}
+
+{% block body %} 
+
+{% include 'core/navigation.html' %}
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Subscription</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+  
+
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+
+			
+                <p class="block-title text-center">Movies</p>
+
+          <hr class="hr">
+
+
+ 
+            {% for x in page %} 
+            <div class="col-sm-6 col-md-4">
+              <div class="card mb-4 shadow-sm thumbnail">
+                <img src="{{x.image.url}}"  style="width: 100%; height: 500px;" text="Thumbnail">
+                <div class="card-body">
+                    <p class="card-text text-center">{{x.title}}</p>
+                    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'moviedetail' x.slug %}" >Request Now</a></button>
+                    </div>
+                    <div class="btn-group" role="group">
+                    </div>
+                    <div class="btn-group" role="group">
+                        <small class="text-muted"><b style="color: black">Price:</b> Tsh {{x.price}}</small>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+           {% endfor %}
+
+
+			<!-- store bottom filter -->
+					<div class="store-filter clearfix">
+						<div class="pull-right text-center">
+						<hr class="hr">
+						{% include 'include/paginated.html' with page=page %}
+						</div>
+					</div>
+					<!-- /store bottom filter -->
+
+
+     		</div>
+       	<!-- /row -->
+		</div>
+	<!-- /container -->
+	</div>
+	<!-- /section -->
+	{% endblock %}

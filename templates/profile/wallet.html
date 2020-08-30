@@ -1,0 +1,251 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} Blank Page {% endblock %}
+
+{% load static %}
+
+{% block body %} 
+
+{% include 'core/navigation.html' %}
+    
+
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Blank</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+               <!--Settings-->
+                <div class="col-md-2">
+
+
+       <div class="profile-sidebar">
+          <div class="profile-userpic">
+              <img src="{{user.client.avater.url}}" class="img-responsive rounded-circle" style="width: 150px; height: 150px;" alt="">
+        </div>
+      <div class="profile-usertitle">
+        <div class="profile-usertitle-name">
+           {{request.user.first_name|title}} {{request.user.last_name|title}}
+         </div>
+       <div class="profile-usertitle-job">
+             {{user.client.institute}}
+       </div>
+     </div>
+
+    <div class="profile-usermenu">
+      <ul class="nav">
+        <li>
+          <a href="{% url 'profile' %}">
+          <i class="fa fa-anchor"></i>
+          Account </a>
+        </li>
+        <li class="active">
+          <a href="#">
+          <i class="fa fa-snowflake-o"></i>
+          Wallet </a>
+        </li>
+        <li>
+          <a href="{% url 'squeeze' %}">
+          <i class="fa fa-reorder"></i>
+           Listing </a>
+        </li>
+        <li>
+          <a href="{% url 'demand' %}">
+          <i class="fa fa-archive"></i>
+           Request </a>
+        </li>
+        <li>
+          <a href="{% url 'orders' %}"><!--target="_blank"-->
+          <i class="fa fa-shopping-basket"></i>
+         Orders</a>
+        </li>
+        <li>
+         <a href="{% url 'shop' request.user %}">
+          <i class="fa fa-shopping-bag"></i>
+          Shop</a>
+        </li>
+        <li>
+          <a href="{% url 'contact' %}">
+          <i class="fa fa-book"></i>
+          Contacts</a>
+        </li>
+          <li>
+          <a href="{% url 'settings' %}">
+          <i class="fa fa-wrench"></i>
+          Settings </a>
+        </li>
+      </ul>
+    </div>
+    </div>
+
+    </div>
+            <div class="col-md-8">
+            	{% for message in  messages %}
+	            <div class="alert alert-success text-center">
+	              {{message}}
+	            </div>
+				{% endfor %}
+            <!---->
+                           <!--tab start-->
+                               
+                <div class="col-md-6">
+                <div class="panel panel-success">
+                 <div class="panel-heading text-center text-uppercase">Withdraw</div>
+                   <div class="panel-body container">
+                     <div class="col-md-6">
+                   <form  action="{% url 'withdraw' %}" method="POST"  class="p-5 bg-white border center-block">
+                            {% csrf_token %}
+                            <!---->
+                      <label class="font-weight-bold h4">Enter Amount</label>
+                        <div class="row form-group">
+						          		<div class="col-md-7 mb-3 mb-md-0">
+									        <input type="number" name="withdraw" class="form-control" placeholder="Enter Amount"  required>
+                        </div>
+                      </div>
+                     <!---->
+                     <!---->
+                      <label class="font-weight-bold h4">Withdraw Via</label>
+                        <div class="row form-inline">
+							            <div class="col-md-7 mb-3 mb-md-0">
+							          		<select class="input-list form-inline" name="via">
+                                  <option value="none">...</option>
+                                  <option value="paypal">Pay-Pal</option>
+                                  <option value="mpesa">M-Pesa</option>
+                                  <option value="tigopesa">Tigo Pesa</option>
+                                  <option value="airtelmoney">Airtel Money</option>
+		   							        </select>
+                        </div>
+                      </div>
+                      <!---->
+                      <!---->
+                      <label class="font-weight-bold h4">Enter Account</label>
+                        <div class="row form-group">
+						            	<div class="col-md-7 mb-3 mb-md-0">
+								          	<input type="text" name="account" class="form-control" placeholder="Enter number or Email"  required>
+                            <strong class="help-block text-center h6">Enter Number Or Pay-Pal Email That Receive Cash You Withdraw.</strong>
+                        </div>
+                      </div>
+                      <!---->
+                        <button type="submit" class="btn btn-success btn-xs"> Withdraw </button>
+                      <!---->
+                       </form> 
+                     </div>
+                 </div>
+             </div>    
+            </div>     
+
+                <div class="col-md-6">
+                   <div class="panel panel-success">
+                     <div class="panel-heading text-center text-uppercase">Deposit</div>
+                         <div class="panel-body container">
+                          <form  method="POST"  class="p-5 bg-white border center-block">
+                            {% csrf_token %}
+                            <!---->
+                            <p style="color: #fd7e14; font-size: 13px; font-weight: bold;">Vox <span style="color:black;"> - </span> <span style="color:blue;">Pay</span> <sub style="color: #000; font-size:10px" >power by</sub>  </p>
+                            <label class="font-weight-bold h4">Enter Transaction ID</label>
+                            <div class="row form-group">
+                                <div class="col-md-3 mb-3 mb-md-0">
+                              <input type="text" name="transaction" class="form-control" placeholder="Enter Amount"  required>
+                            </div>
+                          </div>
+                            <!---->
+
+                            <button type="submit"  class="btn btn-success btn-sm"> Deposit </button>
+                            <!---->
+                        </form>
+                         <br>
+                        
+                        <div class="alert alert-danger text-center col-md-3 ">
+                            <p>Plese If Dont Know How To 
+                            Depost In Your Wallet Click Help button Down Bellow!
+                            </p>
+                            <br>
+                           <button type="submit" class="btn btn-success btn-xs"> Help !</button>
+                        </div>
+                        
+                        <!---->
+                    
+                        <!---->
+
+                   
+                     </div>
+                    </div>
+                </div>
+
+
+                
+       
+
+                 <div class="col-md-12">
+                     <div class="panel  panel-success">
+                    <div class="panel-heading text-center text-uppercase">Notification</div>
+                     <div class="panel-body">
+                      <table class="table table-bordered">
+                      <thead> 
+                 <tr> 
+                 <th class="text-center text-uppercase">Details</th> 
+                 <th class="text-center text-uppercase">Amounts</th> 
+                 </tr> 
+                 </thead> 
+                 <tbody> 
+                 <tr> 
+                 <td><b>Balance</b></td>
+                  <td>{{user.prime.value}}</td>
+                </tr> 
+                   <tr> 
+                   <td><b>Last Withdraw</b></td> 
+
+                   <td>{{user.prime.credit}}</td>
+                    </tr> 
+                    <tr> 
+                    <td><b>Last Payment </b></td> 
+
+                    <td>{{user.prime.extract}}</td> 
+                    </tr> 
+                    <tr> 
+                    <td><b>Last Deposit</b></td> 
+
+                    <td>{{user.prime.mine}}</td> 
+                    </tr> 
+                    <tr> 
+                    <td><b>Withdraw Pending</b></td> 
+                    <td>
+                    {% for x in withdwar %}
+                    {{x.amount}},
+                    {% empty %}
+                      0
+                    {% endfor %}
+                    </td>
+                    </tr> 
+                    </tbody>
+                    </table>
+                     </div>  
+                     </div>
+                </div> 
+                  <!--Ta/b-->
+            <!---->
+             </div>
+
+            <div class="dcol-md-2">
+              AID
+            </div>
+
+               <!--setinds end-->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+	{% endblock %}

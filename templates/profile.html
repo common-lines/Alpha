@@ -1,0 +1,318 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} Profile Page {% endblock %}
+
+{% load static %}
+
+{% block body %} 
+
+{% include 'core/navigation.html' %}
+    
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Profile</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+        <div class="col-md-2">
+
+
+       <div class="profile-sidebar">
+          <div class="profile-userpic">
+              <img src="{{user.client.avater.url}}" class="img-responsive rounded-circle" style="width: 150px; height: 150px;" alt="">
+        </div>
+      <div class="profile-usertitle">
+        <div class="profile-usertitle-name">
+           {{request.user.first_name|title}} {{request.user.last_name|title}}
+         </div>
+       <div class="profile-usertitle-job">
+             {{user.client.institute}}
+       </div>
+     </div>
+      
+    <div class="profile-usermenu">
+      <ul class="nav">
+        <li class="active">
+          <a href="#">
+          <i class="fa fa-anchor"></i>
+          Account </a>
+        </li>
+        <li>
+          <a href="{% url 'wallet' %}">
+          <i class="fa fa-snowflake-o"></i>
+          Wallet </a>
+        </li>
+        <li>
+          <a href="{% url 'squeeze' %}">
+          <i class="fa fa-reorder"></i>
+           Listing </a>
+        </li>
+        <li>
+          <a href="{% url 'demand' %}">
+          <i class="fa fa-archive"></i>
+           Request </a>
+        </li>
+        <li>
+          <a href="{% url 'orders'%}"><!--target="_blank"-->
+          <i class="fa fa-shopping-basket"></i>
+         Orders</a>
+        </li>
+        <li>
+          <a href="{% url 'shop' request.user %}">
+          <i class="fa fa-shopping-bag"></i>
+          Shop</a>
+        </li>
+        <li>
+          <a href="{% url 'contact' %}">
+          <i class="fa fa-book"></i>
+          Contacts</a>
+        </li>
+          <li>
+          <a href="{% url 'settings' %}">
+          <i class="fa fa-wrench"></i>
+          Settings </a>
+        </li>
+      </ul>
+    </div>
+   </div>
+
+
+        </div>
+
+
+
+
+
+
+                <div class="col-md-8">
+                <!--Update Message-->
+                  {% for message in  messages %}
+	                <div class="alert alert-success text-center">
+	                     {{message}}
+	                 </div>
+			          	{% endfor %}
+                <!--Message Ends-->
+           <ul class="nav nav-tabs nav-justified">
+              <li class="active"><a data-toggle="tab" href="#tab1">Home</a></li>
+               <li><a data-toggle="tab" href="#tab2">Messages</a></li>
+            <li><a data-toggle="tab" href="#tab3">Account</a></li> </ul>
+
+            <div class="tab-content">
+
+              <div id="tab1" class="tab-pane fade in active">
+                <br>
+                <p>Home</p>
+                </div>
+
+              <div id="tab2" class="tab-pane fade in">
+                <br>
+              <!--mesage-->
+              <div class="panel panel-success">
+              <div class="panel-heading text-center">Conversations</div>
+              <div class="panel-body">
+                	
+              {% for x in post  %}
+              {% if x.sender == request.user  %}
+              <div class="containerchart darkerchart">
+              <img src="{{x.receiver.client.avater.url}}" alt="Avatar">
+              <p><a href="{% url 'contented' x.slug %}">{{x.title}}</a></p>
+              <span class="time-right-chart">To: {{x.receiver.first_name}}</span>
+              </div> 
+              {% else %}
+              <div class="containerchart darkerchart">
+              <img src="{{x.sender.client.avater.url}}" alt="Avatar">
+              <p><a href="{% url 'contented' x.slug %}">{{x.title}}</a></p>
+              <span class="time-right-chart">From: {{x.sender.first_name}}</span>
+              </div>
+              {% endif %}
+              {% endfor %}
+
+                </div>
+                <div class="panel-footer text-center">Click Tittle To Open Chat Room</div>
+            </div>
+
+              <!--message ends-->
+
+                </div>
+
+              <div id="tab3" class="tab-pane fade in">
+                <br>
+                <!--tab start-->
+                <div class="col-md-6">
+                <div class="panel panel-success">
+                <p class="panel-heading text-center text-uppercase">Profile</p>
+                      <div class="block-body  block-row  forum-static-data">
+                        <!--User Data-->
+                          <div class="static-data">
+                          <span class="static-title">First name</span>
+                          <span class="static-number">{{request.user.first_name|title}}</span>
+                          </div>
+                          <!--User Data-->
+                          <div class="static-data">
+                          <span class="static-title">Last Name</span>
+                          <span class="static-number">{{request.user.last_name|title}}</span>
+                          </div>
+                          <!--User Data-->
+                          <div class="static-data">
+                          <span class="static-title">lOGIN AS</span>
+                          <span class="static-number">{{request.user|title}}</span>
+                          </div>
+                      <!--User Data-->
+                      </div>
+                      <!---->
+                        <div class="block-body  block-row  forum-static-data">
+                        <!--User Data-->
+                          <div class="static-data">
+                          <span class="static-title">Join</span>
+                          <span class="static-number">{{request.user.date_joined|date:"M d, Y"}}</span>
+                          </div>
+                          <!--User Data-->
+                          <div class="static-data">
+                          <span class="static-title">Password</span>
+                          <span class="static-number">Encryption</span>
+                          </div>
+                          <!--User Data-->
+                          <div class="static-data">
+                          <span class="static-title">Active</span>
+                          <span class="static-number">{{request.user.is_active}}</span>
+                          </div>
+                      <!--User Data-->
+                      </div>
+                </div>
+               </div>  
+                <div class="col-md-6">
+                   <div class="panel panel-success">
+                     <div class="panel-heading text-center text-uppercase">Subscription</div>
+
+                      <div class="block-body  block-row  forum-static-data">
+                        <!--User Data-->
+                          <div class="static-data">
+                          <span class="static-title">Packege</span>
+                          <span class="static-number">{{user.client.subscription|capfirst}}</span>
+                          </div>
+                          <!--User Data-->
+                          <div class="static-data">
+                          <span class="static-title">Duration</span>
+                          <span class="static-number">{{user.client.duration}}</span>
+                          </div>
+                          <!--User Data-->
+                          <div class="static-data">
+                          <span class="static-title">Location</span>
+                          {% if user.client.subscription == "Titanium" %}
+                          <span class="static-number">{{user.client.country|capfirst}}</span>
+                          {% elif user.client.subscription == "Platinum"  %}
+                          <span class="static-number">{{user.client.region|capfirst}}</span>
+                          {% else %}
+                          <span class="static-number">{{user.client.institute|capfirst}}</span>
+                          {% endif %}
+                          </div>
+                      <!--User Data-->
+                      </div>
+
+
+                      <div class="block-body  block-row  forum-static-data">
+                        <!--User Data-->
+                          <div class="static-data">
+                          <span class="static-title">T. Listing</span>
+                          <span class="static-number">{{user.client.entirety}}</span>
+                          </div>
+                          <!--User Data-->
+                          <div class="static-data">
+                          <span class="static-title">Remain List</span>
+                          <span class="static-number">{{day}}</span>
+                          </div>
+                          <!--User Data-->
+                          <div class="static-data">
+                          <span class="static-title">List Before</span>
+                          <span class="static-number">{{existing|date:"d M Y" }}</span>
+                          </div>
+                      <!--User Data-->
+                      </div>
+                    </div>
+                </div>
+                 <div class="col-md-12">
+                     <div class="panel panel-success">
+                    <div class="panel-heading text-center text-uppercase">alertS</div>
+                     <div class="panel-body">
+                       <div class="block-body  block-row  forum-static-data">
+                        <!--User Data-->
+                          <div class="static-data">
+                           <span class="static-title">Verfied Account</span>
+                          <span class="static-number">{{user.client.verified}}</span>
+                          </div>
+                          <!--User Data-->
+                          <div class="static-data">
+                          <span class="static-title">Professional User</span>
+                          <span class="static-number">{{user.client.professional}}</span>
+                          </div>
+                          <!--User Data-->
+                          <div class="static-data">
+                          <span class="static-title">phone User</span>
+                          <span class="static-number">{{user.client.phone}}</span>
+                          </div>
+                      <!--User Data-->
+                      </div>
+
+                      <div class="block-body  block-row  forum-static-data">
+                        <!--User Data-->
+                          <div class="static-data">
+                           <span class="static-title">Active Institute</span>
+                          <span class="static-number">{{user.client.institute|capfirst}}</span>
+                          </div>
+                          <!--User Data-->
+                          <div class="static-data">
+                          <span class="static-title">Active Region</span>
+                          <span class="static-number">{{user.client.region|capfirst}}</span>
+                          </div>
+                          <!--User Data-->
+                          <div class="static-data">
+                          <span class="static-title">Active Country</span>
+                          <span class="static-number">{{user.client.country|capfirst}}</span>
+                          </div>
+                      <!--User Data-->
+                      </div>
+                      <p class="h4 text-center static-title">Acitve Bio</p>
+                      <p class="text-center">{{user.client.about|capfirst}}</p>
+       
+                      <!--User Data-->
+                      </div>
+                     </div>  
+                     </div>
+                </div> 
+                  <!--Ta/b-->
+                </div>
+  
+            </div>
+
+
+
+         
+
+       
+
+            <div class="dcol-md-2">
+              AID
+            </div>
+
+
+
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+ 
+    {% endblock %}

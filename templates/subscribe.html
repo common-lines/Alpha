@@ -1,0 +1,151 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} Subscription Page {% endblock %}
+
+{% load static %}
+
+{% block body %} 
+
+{% include 'core/navigation.html' %}
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Subscription</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+
+
+        <div class="container">
+         <h2 class="block-title text-center"> 
+          Pick A Plan	
+          </h2>
+         <p class="text-center">Subscribe now to package of your choice, To access the market. Select the package that gives you wider range option.</p>
+        </div>
+
+
+				<div class="panel panel-success">
+				<div class="panel-heading text-center">Special Package</div>
+				<div class="panel-body container">
+          <p class="text-center h5"><b>Expore More!</b></p>
+          <br>
+          <p class="text-center text-success h2">Sale Any Location, Anywhere.</p>
+          <p class="text-center">Choose Institute, Region Or Country where you what to sell </p>
+          <br>
+          <br>
+            <a class="btn btn-lg btn-block hvr-underline-from-center" href="#">Purchase Now!</a>
+         </div>
+			  </div>
+
+
+          <!--fffffffffffffffffffffffffff-->
+          <div id="pricing" class="pricing-main pad-top-100 pad-bottom-100">
+            <div class="container">
+                <div class="row">
+                  
+                    <div class="panel-pricing-in-5">
+                        <!-- item -->
+                        <div class="col-md-4 col-sm-4 text-center">
+                            <div class="panel panel-pricing">
+                                <div class="panel-heading" >
+                                    <h3>Silver</h3>
+                                </div>
+                                <div class="panel-body text-center">
+                                    <p><strong>2,000/<span>15dys</span></strong></p>
+                                  </div>
+                                <ul class="list-group text-center">
+                                    <li class="list-group-item"><i class="fa fa-check"></i> 1 Univasity</li>
+                                    <li class="list-group-item"><i class="fa fa-check"></i> 2 Days To List</li>
+                                    <li class="list-group-item"><i class="fa fa-check"></i> 1 Listing Post</li>
+                                    <li class="list-group-item"><i class="fa fa-check"></i> Create Ads</li>
+                                    <li class="list-group-item"><i class="fa fa-check"></i> Receive Order</li>
+                                    <li class="list-group-item"><i class="fa fa-check"></i> 24x7 Support</li>
+                                </ul>
+                                <div class="panel-footer">
+                                    <a class="btn btn-lg btn-block hvr-underline-from-center" href="{% url 'silver' %}">Purchase Now!</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /item -->
+
+                        <!-- item -->
+                        <div class="col-md-4 col-sm-4 text-center">
+                            <div class="panel panel-pricing">
+                                <div class="panel-heading">
+                                    <h3>Platinum</h3>
+                                </div>
+                                <div class="panel-body text-center">
+                                    <p><strong>5,000/<span>15dys</span></strong></p>
+                                </div>
+                                <ul class="list-group text-center">
+                                    <li class="list-group-item"><i class="fa fa-check"></i> All Univasity In Region</li>
+                                    <li class="list-group-item"><i class="fa fa-check"></i> 3 Days To List</li>
+                                    <li class="list-group-item"><i class="fa fa-check"></i> 1 - 2 Listing Post</li>
+                                    <li class="list-group-item"><i class="fa fa-check"></i> Create Ads</li>
+                                    <li class="list-group-item"><i class="fa fa-check"></i> Receive Order</li>
+                                    <li class="list-group-item"><i class="fa fa-check"></i> 24x7 Support</li>
+                                </ul>
+                                <div class="panel-footer">
+                                    <a class="btn btn-lg btn-block hvr-underline-from-center" href="{% url 'platinum' %}">Purchase Now!</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /item -->
+
+                        <!-- item -->
+                        <div class="col-md-4 col-sm-4 text-center">
+                            <div class="panel panel-pricing">
+                                <div class="panel-heading">
+                                    <h3>Titanium</h3>
+                                </div>
+                                <div class="panel-body text-center">
+                                    <p><strong>7,000/<span>15dys</span></strong></p>
+                                </div>
+                                <ul class="list-group text-center">
+                                    <li class="list-group-item"><i class="fa fa-check"></i> All Over The Country</li>
+                                    <li class="list-group-item"><i class="fa fa-check"></i> 5 Days To List</li>
+                                    <li class="list-group-item"><i class="fa fa-check"></i> 1 - 5 Listing Post</li>
+                                    <li class="list-group-item"><i class="fa fa-check"></i> Create Ads</li>
+                                    <li class="list-group-item"><i class="fa fa-check"></i> Receive Order</li>
+                                    <li class="list-group-item"><i class="fa fa-check"></i> 24x7 Support</li>
+                                </ul>
+                                <div class="panel-footer">
+                                    <a class="btn btn-lg btn-block hvr-underline-from-center" href="{% url 'titanium' %}">Purchase Now!</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /item -->
+                    </div>
+              
+            
+
+
+
+
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </div>
+        <!-- end pricing-main -->
+
+      
+
+     		</div>
+       	<!-- /row -->
+		</div>
+				<!-- /container -->
+	</div>
+	<!-- /section -->
+	{% endblock %}

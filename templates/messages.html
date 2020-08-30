@@ -1,0 +1,178 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} Blank Page {% endblock %}
+
+{% load static %}
+
+{% block body %} 
+
+{% include 'core/navigation.html' %}
+    
+
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Blank</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+               <!--Settings-->
+                <div class="col-md-2">
+
+
+       <div class="profile-sidebar">
+          <div class="profile-userpic">
+              <img src="{{user.client.avater.url}}" class="img-responsive rounded-circle" style="width: 150px; height: 150px;" alt="">
+        </div>
+      <div class="profile-usertitle">
+        <div class="profile-usertitle-name">
+           {{request.user.first_name|title}} {{request.user.last_name|title}}
+         </div>
+       <div class="profile-usertitle-job">
+             {{user.client.institute}}
+       </div>
+     </div>
+
+    <div class="profile-usermenu">
+      <ul class="nav">
+        <li>
+          <a href="{% url 'profile' %}">
+          <i class="fa fa-anchor"></i>
+          Account </a>
+        </li>
+        <li>
+          <a href="{% url 'wallet' %}">
+          <i class="fa fa-snowflake-o"></i>
+          Wallet </a>
+        </li>
+        <li>
+          <a href="{% url 'squeeze' %}">
+          <i class="fa fa-reorder"></i>
+           Listing </a>
+        </li>
+        <li>
+          <a href="{% url 'demand' %}">
+          <i class="fa fa-archive"></i>
+           Request </a>
+        </li>
+        <li>
+          <a href="{% url 'orders' %}"><!--target="_blank"-->
+          <i class="fa fa-shopping-basket"></i>
+         Orders</a>
+        </li>
+        <li>
+         <a href="{% url 'shop' request.user %}">
+          <i class="fa fa-shopping-bag"></i>
+          Shop</a>
+        </li>
+        <li class="active">
+          <a href="#">
+          <i class="fa fa-envelope-open"></i>
+          Inbox</a>
+        </li>
+      </ul>
+    </div>
+   </div>
+</div>
+            <div class="col-md-8">
+              {% if messages %}
+              {% for message in  messages %}
+                <div class="alert alert-{{message.tags}} text-center">
+                  {{message}}
+                </div>
+             {% endfor %}
+              {% endif %}
+              <!--Mesage Boxinfo-->
+              <div class="panel chat_window">
+              <div class="panel-heading text-center top_menu top_menu_title">Inbox</div>
+              <div class="panel-body messages">
+              <!--daker-->
+
+            <!--Cde-->
+            {% for x in qs %}
+               {% if x.receiver == request.user  %}
+                <!--daker-->
+                <div class="containerchart darkerchart ">
+                <img src="{{x.vendor.client.avater.url}}" alt="Avatar">
+                <p><a href="#">{{x.texting}}</a></p>
+                <span class=" time-right-chart">imreceiver </span>
+                </div> 
+                <!--daker-->
+                {% elif x.vendor == request.user   %} 
+              <!--daker-->
+              <div class="containerchart">
+              <img src="{{user.client.avater.url}}" alt="Avatar" class="right">
+              <p><a href="">{{x.texting}}</a></p>
+              <span class="time-left-chart">Imsender | 12-25-200 </span>
+              </div> 
+             <!--daker-->
+              {% else %}
+                 <div class="panel-footer text-center">Click Tittle To Open Chat Room</div>
+              {% endif %}
+              {% endfor %}
+               </div>
+                 {% for x in qs %}
+                 {% if forloop.counter == 1 %}
+                    {% if x.receiver == request.user %}
+                    <!---->
+                    <form  method="POST">
+                        {% csrf_token %}
+                        <input type="text" name="subject"  class="sr-only"  value="{{x.subject}}">
+                        <input type="text" name="receiver"  class="sr-only"  value="{{x.vendor}}">
+                        <div class="panel-footer text-center">
+                            <input name="texting" class="message_input_wrapper" placeholder="Type your message here..."  />
+                            <button type="submit" class="send_message">Send</button>
+                        </div>
+                    </form>
+                    <!---->
+                    <div class="panel-footer text-center"><a href="{% url 'erisetext' x.subject %}" class="btn btn-success btn-xs text-center " style="background-color: #f89d13; border-color: #f89d13;">Delete</a></div>
+                    {% elif x.vendor == request.user   %} 
+                     <!---->
+                    <form  method="POST">
+                        {% csrf_token %}
+                        <input type="text" name="subject"  class="sr-only"  value="{{x.subject}}">
+                        <input type="text" name="receiver"  class="sr-only"  value="{{x.receiver}}">
+                        <div class="panel-footer text-center">
+                            <input name="texting" class="message_input_wrapper" placeholder="Type your message here..."  />
+                            <button type="submit" class="send_message">Send</button>
+                        </div>
+                    </form>
+                    <!---->
+                     <div class="panel-footer text-center"><a href="{% url 'erisetext' x.subject %}" class="btn btn-success btn-xs text-center " style="background-color: #f89d13; border-color: #f89d13;">Delete</a></div>
+                    {% else %}
+                      <div class="panel-footer text-center">Click Tittle To Open Chat Room</div>
+                    {% endif %}
+                  {% endif %}
+                {% endfor %}
+            </div>
+
+              
+             
+
+
+
+            <!--code in-->
+            </div>
+            <div class="col-md-2">
+              AID
+            </div>
+
+               <!--setinds end-->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+ 
+	{% endblock %}
